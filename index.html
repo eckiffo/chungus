@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>$CHUNGUS - THE BIGGEST COIN ON THE INTERNET!!!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #000033;
+      background-image:
+        radial-gradient(circle, #ff00ff22 1px, transparent 1px),
+        radial-gradient(circle, #00ffff22 1px, transparent 1px);
+      background-size: 40px 40px, 20px 20px;
+      color: #ffff00;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    @keyframes blink {
+      0%, 100% { visibility: visible; }
+      50% { visibility: hidden; }
+    }
+    .blink { animation: blink 0.8s step-start infinite; }
+
+    @keyframes rainbow {
+      0%   { color: #ff0000; }
+      14%  { color: #ff8800; }
+      28%  { color: #ffff00; }
+      42%  { color: #00ff00; }
+      57%  { color: #0088ff; }
+      71%  { color: #8800ff; }
+      85%  { color: #ff00ff; }
+      100% { color: #ff0000; }
+    }
+    .rainbow { animation: rainbow 1.2s linear infinite; font-weight: bold; }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
+      50%       { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff; }
+    }
+
+    @keyframes pricepulse {
+      0%   { opacity: 1; }
+      50%  { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.2; transform: scale(0.5); }
+    }
+    .star { display: inline-block; animation: sparkle 1.5s ease-in-out infinite; color: #ffff00; }
+    .star:nth-child(2) { animation-delay: 0.3s; }
+    .star:nth-child(3) { animation-delay: 0.6s; }
+    .star:nth-child(4) { animation-delay: 0.9s; }
+    .star:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes livepulse {
+      0%, 100% { box-shadow: 0 0 0 0 #00ff0088; }
+      50%       { box-shadow: 0 0 0 6px #00ff0000; }
+    }
+    .live-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: #00ff00;
+      border-radius: 50%;
+      margin-right: 4px;
+      animation: livepulse 1.5s ease-in-out infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-2deg) scale(1.0); }
+      50%       { transform: rotate(2deg)  scale(1.05); }
+    }
+    .wobble { animation: wobble 1.8s ease-in-out infinite; }
+
+    @keyframes floatup {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    .floatup { animation: floatup 2.5s ease-in-out infinite; }
+
+    /* ===== LAYOUT ===== */
+    .center { text-align: center; }
+
+    .main-table {
+      width: 860px;
+      margin: 0 auto;
+      border: 4px solid #ff00ff;
+      background: #000022;
+      box-shadow: 0 0 30px #ff00ff, 0 0 60px #8800ff;
+    }
+
+    .header-cell {
+      background: linear-gradient(135deg, #330066, #000033, #003300, #000033, #660033);
+      padding: 10px;
+      border-bottom: 3px dashed #ff00ff;
+    }
+
+    .sidebar {
+      width: 190px;
+      background: #001133;
+      border-right: 3px solid #00ffff;
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    .content {
+      padding: 15px;
+      vertical-align: top;
+    }
+
+    .site-title {
+      font-size: 52px;
+      font-weight: 900;
+      animation: glow 1.5s ease-in-out infinite, rainbow 1.2s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      line-height: 1.1;
+    }
+
+    .box {
+      border: 3px solid #ff00ff;
+      background: #000044;
+      padding: 8px;
+      margin-bottom: 12px;
+      box-shadow: inset 0 0 10px #ff00ff44;
+    }
+    .box h3 {
+      color: #00ffff;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin: 0 0 6px 0;
+      border-bottom: 1px solid #ff00ff;
+      padding-bottom: 4px;
+      text-shadow: 0 0 8px #00ffff;
+    }
+    .box p, .box a { font-size: 12px; margin: 3px 0; }
+
+    .retro-btn {
+      display: block;
+      width: 100%;
+      margin: 4px 0;
+      padding: 6px;
+      background: linear-gradient(180deg, #660099, #330066);
+      border: 2px outset #ff00ff;
+      color: #ffff00;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      text-shadow: 0 0 6px #ff00ff;
+    }
+    .retro-btn:hover {
+      background: linear-gradient(180deg, #ff00ff, #880088);
+      border-style: inset;
+    }
+
+    /* ===== MEME CAPTION STYLE (Impact) ===== */
+    .meme-top, .meme-bot {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      -webkit-text-stroke: 2px #000000;
+      text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+      display: block;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .meme-top { margin-bottom: 4px; }
+    .meme-bot { margin-top: 4px; }
+
+    /* ===== CHUNGUS HERO ===== */
+    .chungus-hero {
+      background: #000011;
+      border: 4px solid #ff00ff;
+      box-shadow: 0 0 30px #ff00ff88, inset 0 0 20px #00000099;
+      padding: 12px;
+      text-align: center;
+      margin: 10px 0;
+      position: relative;
+    }
+    .chungus-hero img {
+      max-width: 260px;
+      width: 100%;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 16px #ff00ffaa);
+    }
+    .chungus-hero .fallback-art {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      color: #00ff00;
+      line-height: 1.15;
+      text-shadow: 0 0 6px #00ff00;
+      white-space: pre;
+      display: inline-block;
+      text-align: left;
+    }
+
+    /* ===== MEME GALLERY ===== */
+    .meme-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .meme-card {
+      border: 3px solid #ff00ff;
+      background: #110022;
+      box-shadow: 0 0 10px #ff00ff44;
+      padding: 0;
+      overflow: hidden;
+      text-align: center;
+    }
+    .meme-card-inner {
+      background: #000011;
+      padding: 10px 8px 8px;
+      position: relative;
+    }
+    .meme-img-area {
+      width: 100%;
+      min-height: 120px;
+      background: linear-gradient(135deg, #110022, #001122, #110022);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 2px solid #ff00ff33;
+      border-top: 2px solid #ff00ff33;
+      padding: 8px;
+      position: relative;
+    }
+    .meme-ascii-small {
+      font-family: 'Courier New', monospace;
+      font-size: 8.5px;
+      color: #00ff00;
+      line-height: 1.1;
+      text-shadow: 0 0 4px #00ff00;
+      white-space: pre;
+    }
+    .meme-caption-bar {
+      padding: 6px 8px;
+      background: #000033;
+    }
+
+    /* ===== LIVE PRICE ===== */
+    .live-price-val {
+      font-size: 17px;
+      font-weight: bold;
+      font-family: 'Courier New', monospace;
+      text-shadow: 0 0 8px #00ff00;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      margin: 3px 0;
+      border-bottom: 1px dotted #330033;
+      padding-bottom: 2px;
+    }
+    .stat-label { color: #8888aa; }
+    .stat-val   { color: #ffff00; font-family: 'Courier New', monospace; }
+    .positive   { color: #00ff00 !important; }
+    .negative   { color: #ff4444 !important; }
+
+    /* ===== CHART ===== */
+    .chart-wrap {
+      border: 3px solid #ff00ff;
+      background: #000011;
+      margin: 10px 0;
+      box-shadow: 0 0 20px #ff00ff66;
+    }
+    .chart-header {
+      background: linear-gradient(90deg, #330066, #000033, #330066);
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #ff00ff;
+      text-shadow: 0 0 8px #ff00ff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chart-iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      display: block;
+      background: #000;
+    }
+    .chart-loading {
+      width: 100%;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      background: #000011;
+    }
+
+    /* ===== TOKENOMICS ===== */
+    .tknomics {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .tknomics th {
+      background: #330066;
+      color: #ff00ff;
+      border: 2px solid #ff00ff;
+      padding: 6px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #ff00ff;
+    }
+    .tknomics td {
+      border: 2px solid #550055;
+      padding: 6px;
+      color: #ffff00;
+    }
+    .tknomics tr:nth-child(even) td { background: #110022; }
+    .tknomics tr:nth-child(odd)  td { background: #000011; }
+
+    /* ===== MARQUEES ===== */
+    .marquee-top {
+      background: #ff00ff;
+      color: #000000;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 4px 0;
+    }
+    .marquee-bottom {
+      background: #00ffff;
+      color: #000000;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+
+    .counter {
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      color: #00ff00;
+      background: #000000;
+      border: 3px inset #00ff00;
+      padding: 4px 12px;
+      display: inline-block;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .construction {
+      background: repeating-linear-gradient(45deg, #ffff00, #ffff00 10px, #000000 10px, #000000 20px);
+      padding: 3px;
+      text-align: center;
+    }
+    .construction-inner {
+      background: #000033;
+      color: #ff0000;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px;
+      text-shadow: 0 0 8px #ff0000;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+    .step-num {
+      background: #ff00ff;
+      color: #000;
+      font-weight: 900;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .footer {
+      background: #000011;
+      border-top: 3px dashed #ff00ff;
+      padding: 10px;
+      text-align: center;
+      font-size: 11px;
+      color: #888888;
+    }
+
+    a { color: #ff00ff; }
+    a:hover { color: #00ffff; }
+
+    hr.fancy {
+      border: none;
+      border-top: 2px solid;
+      border-image: linear-gradient(90deg, transparent, #ff00ff, #00ffff, #ff00ff, transparent) 1;
+      margin: 10px 0;
+    }
+
+    .big-text {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ff00ff;
+      text-shadow: 0 0 12px #ff00ff;
+    }
+
+    .warning-box {
+      background: #330000;
+      border: 3px solid #ff0000;
+      color: #ff4444;
+      padding: 8px;
+      font-size: 12px;
+      margin: 8px 0;
+      text-align: center;
+    }
+
+    .ca-box {
+      background: #110033;
+      border: 3px dashed #ff00ff;
+      padding: 10px;
+      display: inline-block;
+      text-align: center;
+    }
+    .ca-copy-btn {
+      margin-top: 6px;
+      padding: 5px 14px;
+      background: linear-gradient(180deg, #660099, #330066);
+      border: 2px outset #ff00ff;
+      color: #ffff00;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .ca-copy-btn:hover { background: linear-gradient(180deg, #ff00ff, #880088); }
+
+    #last-updated { font-size: 9px; color: #555; text-align: right; margin-top: 2px; }
+
+    /* chungus quote box */
+    .chungus-quote {
+      background: linear-gradient(135deg, #110022, #001133);
+      border-left: 5px solid #ff00ff;
+      border-right: 5px solid #00ffff;
+      padding: 10px 14px;
+      margin: 8px 0;
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 16px;
+      color: #ffff00;
+      text-shadow: 1px 1px 0 #000;
+      font-style: italic;
+    }
+    .chungus-quote span { color: #00ffff; font-size: 12px; font-style: normal; }
+  </style>
+</head>
+<body>
+
+<!-- TOP MARQUEE -->
+<div class="marquee-top">
+  <marquee behavior="scroll" direction="left" scrollamount="5">
+    *** $CHUNGUS IS HERE *** PRICE: <span id="marquee-price">loading...</span> ***
+    HE IS BIG. HE IS CHUNGUS. *** THE BIGGEST MEME *** THE BIGGEST COIN ***
+    BIG CHUNGUS IS WATCHING *** JOIN THE CHUNGUS ARMY *** TO THE MOON ***
+    $CHUNGUS $CHUNGUS $CHUNGUS *** WAGMI *** CHUNGUS NEVER RUGS ***
+  </marquee>
+</div>
+
+<table class="main-table" cellpadding="0" cellspacing="0">
+
+  <!-- HEADER -->
+  <tr>
+    <td colspan="2" class="header-cell center">
+      <div>
+        <span class="star">&#10022;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#10022;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#10022;</span>
+      </div>
+      <div class="site-title">$CHUNGUS</div>
+      <div style="font-family:Impact,'Arial Black',sans-serif; font-size:20px; color:#fff;
+                  -webkit-text-stroke:1px #000;
+                  text-shadow:2px 2px 0 #000,-2px 2px 0 #000,2px -2px 0 #000,-2px -2px 0 #000;
+                  margin:4px 0; letter-spacing:2px;">
+        IS THIS A GOOD INVESTMENT?
+      </div>
+      <div style="font-family:Impact,'Arial Black',sans-serif; font-size:26px; color:#ffff00;
+                  -webkit-text-stroke:2px #ff00ff;
+                  text-shadow:3px 3px 0 #ff00ff,-3px 3px 0 #ff00ff;
+                  letter-spacing:3px;">
+        YES. YES IT IS.
+      </div>
+      <div style="font-size:13px; color:#ffff00; margin-top:6px;">
+        <span class="blink">&#9658;</span>
+        &nbsp;Powered by BIG CHUNGUS ENERGY since 2024&nbsp;
+        <span class="blink">&#9668;</span>
+      </div>
+      <br>
+      <div>
+        <span class="star">&#9733;</span>
+        <span class="star">&#10022;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#10022;</span>
+        <span class="star">&#9733;</span>
+      </div>
+    </td>
+  </tr>
+
+  <!-- MAIN ROW -->
+  <tr>
+
+    <!-- SIDEBAR -->
+    <td class="sidebar">
+
+      <div class="box">
+        <h3>&#9658; NAVIGATION</h3>
+        <a class="retro-btn" href="#chungus">Big Chungus</a>
+        <a class="retro-btn" href="#memes">Meme Gallery</a>
+        <a class="retro-btn" href="#chart">Live Chart</a>
+        <a class="retro-btn" href="#tokenomics">Tokenomics</a>
+        <a class="retro-btn" href="#howtobuy">How 2 Buy</a>
+        <a class="retro-btn" href="#roadmap">Roadmap</a>
+        <a class="retro-btn" href="#community">Community</a>
+      </div>
+
+      <div class="box">
+        <h3>&#9658; LINKS</h3>
+        <a class="retro-btn" href="#">Twitter/X</a>
+        <a class="retro-btn" href="#">Telegram</a>
+        <a class="retro-btn" href="https://dexscreener.com/solana/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank">DexScreener</a>
+        <a class="retro-btn" href="#">Pump.fun</a>
+        <a class="retro-btn" href="#">Discord</a>
+        <a class="retro-btn" href="#">Guestbook</a>
+      </div>
+
+      <div class="box">
+        <h3>&#9658; VISITORS</h3>
+        <div style="text-align:center; margin: 4px 0;">
+          <div class="counter">0069420</div>
+        </div>
+        <div style="font-size:10px; text-align:center; color:#aaaaaa;">visitors since launch</div>
+      </div>
+
+      <!-- LIVE PRICE BOX -->
+      <div class="box">
+        <h3><span class="live-dot"></span>LIVE PRICE</h3>
+        <div style="text-align:center; margin: 4px 0;">
+          <div class="live-price-val" id="live-price" style="color:#00ff00;">loading...</div>
+          <div id="live-change" style="font-size:12px; margin: 2px 0;">--</div>
+        </div>
+        <div style="margin-top:6px;">
+          <div class="stat-row">
+            <span class="stat-label">MKT CAP</span>
+            <span class="stat-val" id="live-mcap">--</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">VOL 24H</span>
+            <span class="stat-val" id="live-vol">--</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">LIQUIDITY</span>
+            <span class="stat-val" id="live-liq">--</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">BUYS 24H</span>
+            <span class="stat-val positive" id="live-buys">--</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">SELLS 24H</span>
+            <span class="stat-val negative" id="live-sells">--</span>
+          </div>
+        </div>
+        <div id="last-updated">refreshes every 30s</div>
+      </div>
+
+      <div class="construction">
+        <div class="construction-inner">
+          <span class="blink">&#9888;</span> UNDER CONSTRUCTION <span class="blink">&#9888;</span><br>
+          <span style="font-size:10px;">More pages coming soonz!!</span>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top:12px;">
+        <h3>&#9658; WEB RING</h3>
+        <div style="font-size:10px; text-align:center; color:#aaa;">
+          <a href="#">&#9668; Prev</a> &nbsp;|&nbsp; <a href="#">Next &#9658;</a><br>
+          <span style="color:#ff00ff;">Degen Meme Ring</span>
+        </div>
+      </div>
+
+      <br>
+      <div style="text-align:center; font-size:10px; color:#555;">
+        Best viewed in<br>Internet Explorer 6<br>800x600 resolution
+      </div>
+
+    </td>
+
+    <!-- MAIN CONTENT -->
+    <td class="content">
+
+      <!-- BIG CHUNGUS HERO -->
+      <div id="chungus" class="chungus-hero">
+        <span class="meme-top" style="font-size:20px;">INTRODUCING THE FINANCIAL ADVISOR</span>
+        <span class="meme-top" style="font-size:26px; color:#ffff00; -webkit-text-stroke:2px #000;">
+          OF OUR GENERATION
+        </span>
+        <br>
+        <div class="floatup" style="display:inline-block; margin: 8px 0;">
+          <img
+            src="il_fullxfull.4379760908_ij4v.webp"
+            alt="Big Chungus"
+            style="max-width:280px; width:100%; border:4px solid #ff00ff;
+                   box-shadow: 0 0 30px #ff00ffaa, 0 0 60px #8800ff88;
+                   image-rendering: auto;"
+          >
+        </div>
+        <br>
+        <span class="meme-bot" style="font-size:24px; color:#ffff00; -webkit-text-stroke:2px #000;">
+          BIG CHUNGUS
+        </span>
+        <span class="meme-bot" style="font-size:18px;">HE ONLY GOES UP</span>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- ABOUT -->
+      <div id="about">
+        <div class="big-text">&#9658; ABOUT $CHUNGUS</div>
+
+        <div class="chungus-quote">
+          "I have studied the blockchain for many years.<br>
+          I have concluded: BIG CHUNGUS."
+          <br><span>— Sun Tzu, The Art of Degen (probably)</span>
+        </div>
+
+        <p style="font-size:13px; line-height:1.7; color:#ddddff;">
+          Welcome to the <span class="rainbow">OFFICIAL WEBSITE</span> of
+          <strong style="color:#ff00ff;">$CHUNGUS</strong> — the memecoin
+          inspired by the one, the only, the
+          <strong style="color:#ffff00;">BIG CHUNGUS HIMSELF!!!!</strong>
+          <br><br>
+          Big Chungus is not just a meme. He is a
+          <span class="blink" style="color:#ff0000;">LIFESTYLE.</span>
+          He is a <span class="rainbow">PHILOSOPHY.</span>
+          He is the reason you wake up in the morning and check your wallet.
+          <br><br>
+          While other coins have "utility" and "roadmaps" and "whitepapers",
+          <strong>$CHUNGUS</strong> has something FAR more powerful:
+          <span class="rainbow" style="font-size:20px;">THE CHUNGUS.</span>
+          <br><br>
+          No presale. No team tokens. No VC. Just pure
+          <strong style="color:#00ff00;">CHUNGUS ENERGY.</strong>
+          100% fair launch. This is the way.
+        </p>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- MEME GALLERY -->
+      <div id="memes">
+        <div class="big-text">&#9658; CHUNGUS MEME GALLERY</div>
+        <div style="font-size:11px; color:#888; margin-bottom:8px;">
+          certified big brain investment research
+        </div>
+
+        <div class="meme-gallery">
+
+          <!-- MEME 1 -->
+          <div class="meme-card">
+            <div class="meme-card-inner">
+              <span class="meme-top">ME CHECKING MY PORTFOLIO</span>
+              <div class="meme-img-area" style="padding:0;">
+                <img src="BigChungus0.webp" alt="Big Chungus" style="width:100%; height:160px; object-fit:cover; display:block; filter:drop-shadow(0 0 8px #ff00ffaa);">
+              </div>
+              <div class="meme-caption-bar">
+                <span class="meme-bot">AFTER BUYING $CHUNGUS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEME 2 -->
+          <div class="meme-card">
+            <div class="meme-card-inner">
+              <span class="meme-top">OTHER COINS: "WE HAVE UTILITY"</span>
+              <div class="meme-img-area" style="padding:0;">
+                <img src="big-chungus-v0-bz6w2a9w7i6d1.webp" alt="Big Chungus" style="width:100%; height:160px; object-fit:cover; display:block; filter:drop-shadow(0 0 8px #ff00ffaa);">
+              </div>
+              <div class="meme-caption-bar">
+                <span class="meme-bot">$CHUNGUS: "INTERESTING"</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEME 3 -->
+          <div class="meme-card">
+            <div class="meme-card-inner">
+              <span class="meme-top">FINANCIAL ADVISOR SAYS:</span>
+              <div class="meme-img-area" style="flex-direction:column; gap:6px;">
+                <div style="font-family:Impact,'Arial Black',sans-serif; font-size:32px;
+                            color:#ffff00; -webkit-text-stroke:2px #000;
+                            text-shadow:3px 3px 0 #000; text-align:center; line-height:1;">
+                  BUY<br>$CHUNGUS
+                </div>
+                <div style="font-size:10px; color:#888; font-family:'Courier New',monospace;">
+                  (not financial advice)
+                </div>
+              </div>
+              <div class="meme-caption-bar">
+                <span class="meme-bot">TRUST THE CHUNGUS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEME 4 -->
+          <div class="meme-card">
+            <div class="meme-card-inner">
+              <span class="meme-top">WHEN $CHUNGUS PUMPS 1000%</span>
+              <div class="meme-img-area">
+                <pre class="meme-ascii-small">
+  PORTFOLIO VALUE:
+
+  Before: $50
+
+  After:  $50,000
+
+  Difference:
+
+  +B I G  C H U N G U S+
+                </pre>
+              </div>
+              <div class="meme-caption-bar">
+                <span class="meme-bot" style="color:#00ff00;">WAGMI FRENS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEME 5 -->
+          <div class="meme-card">
+            <div class="meme-card-inner">
+              <span class="meme-top">MY PORTFOLIO BE LIKE:</span>
+              <div class="meme-img-area" style="flex-direction:column;">
+                <div style="font-size:11px; color:#ff4444; font-family:'Courier New',monospace; text-align:left; line-height:1.6;">
+                  BTC:    -40%  &#128308;<br>
+                  ETH:    -35%  &#128308;<br>
+                  SOL:    -28%  &#128308;<br>
+                  ──────────────<br>
+                  <span style="color:#00ff00;">CHUNGUS: +420% &#128994;</span>
+                </div>
+              </div>
+              <div class="meme-caption-bar">
+                <span class="meme-bot">BIG CHUNGUS PROTECTS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEME 6 -->
+          <div class="meme-card">
+            <div class="meme-card-inner">
+              <span class="meme-top">NORMIES: "WHAT'S YOUR STRATEGY?"</span>
+              <div class="meme-img-area">
+                <pre class="meme-ascii-small">
+  STEP 1: Buy $CHUNGUS
+
+  STEP 2: ???
+
+  STEP 3: CHUNGUS
+
+  STEP 4: PROFIT
+
+  STEP 5: MORE CHUNGUS
+                </pre>
+              </div>
+              <div class="meme-caption-bar">
+                <span class="meme-bot">FLAWLESS LOGIC</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="chungus-quote" style="text-align:center;">
+          "HE WHO HOLDS $CHUNGUS SHALL INHERIT THE GAINS"<br>
+          <span>— Big Chungus, Book of Chungus, Chapter 4:20</span>
+        </div>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- LIVE CHART -->
+      <div id="chart">
+        <div class="big-text">&#9658; <span class="live-dot"></span>LIVE CHART</div>
+        <div class="chart-wrap">
+          <div class="chart-header">
+            <span>$CHUNGUS / SOL &mdash; DEXSCREENER</span>
+            <span style="font-size:11px; color:#00ffff;">
+              <span class="live-dot"></span>LIVE &nbsp;|&nbsp;
+              <span id="chart-price-header" style="color:#ffff00;">loading...</span>
+            </span>
+          </div>
+          <div class="chart-loading" id="chart-loading">
+            <span class="blink">&#9608;</span>&nbsp;LOADING CHUNGUS CHART...&nbsp;<span class="blink">&#9608;</span>
+          </div>
+          <iframe
+            id="dex-chart"
+            class="chart-iframe"
+            style="display:none;"
+            src=""
+            allow="clipboard-write"
+            title="$CHUNGUS Chart">
+          </iframe>
+        </div>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- TOKENOMICS -->
+      <div id="tokenomics">
+        <div class="big-text">&#9658; TOKENOMICS</div>
+        <br>
+        <table class="tknomics">
+          <tr><th>Item</th><th>Details</th></tr>
+          <tr><td>Token Name</td><td><strong style="color:#ff00ff;">BIG CHUNGUS</strong></td></tr>
+          <tr><td>Ticker</td><td><strong style="color:#00ffff;">$CHUNGUS</strong></td></tr>
+          <tr><td>Total Supply</td><td>1,000,000,000 (1 Billion)</td></tr>
+          <tr><td>Tax</td><td><span style="color:#00ff00; font-weight:bold;">0% Buy / 0% Sell</span></td></tr>
+          <tr><td>LP</td><td><span style="color:#00ff00;">Burned FOREVER &#128293;</span></td></tr>
+          <tr><td>Mint Authority</td><td><span style="color:#00ff00;">Revoked &#10003;</span></td></tr>
+          <tr><td>Freeze Authority</td><td><span style="color:#00ff00;">Revoked &#10003;</span></td></tr>
+          <tr><td>Network</td><td>Solana (SOL)</td></tr>
+          <tr><td>Dev Wallet</td><td><span style="color:#00ff00;">0% (ur welcome)</span></td></tr>
+          <tr>
+            <td>Live Price</td>
+            <td>
+              <span id="tkn-price" style="color:#00ff00; font-family:'Courier New',monospace;">loading...</span>
+              &nbsp;<span id="tkn-change">--</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Market Cap</td>
+            <td><span id="tkn-mcap" style="color:#ffff00; font-family:'Courier New',monospace;">loading...</span></td>
+          </tr>
+        </table>
+        <div class="warning-box">
+          <span class="blink">&#9888;</span>
+          NOT FINANCIAL ADVICE. BIG CHUNGUS IS NOT RESPONSIBLE FOR YOUR LOSSES.
+          DO YOUR OWN RESEARCH!! (but also buy $CHUNGUS)
+          <span class="blink">&#9888;</span>
+        </div>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- HOW TO BUY -->
+      <div id="howtobuy">
+        <div class="big-text">&#9658; HOW 2 BUY $CHUNGUS</div>
+        <div style="font-family:Impact,'Arial Black',sans-serif; font-size:15px; color:#fff;
+                    -webkit-text-stroke:1px #000; text-shadow:1px 1px 0 #000; margin-bottom:8px;">
+          IT'S SO EASY EVEN CHUNGUS CAN DO IT
+        </div>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <strong style="color:#ff00ff;">GET A SOLANA WALLET</strong><br>
+            <span style="font-size:12px; color:#ccccff;">Download Phantom or Solflare. Write down your seed phrase!! Do NOT share it with ANYONE not even Big Chungus himself!!!!</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <strong style="color:#ff00ff;">BUY SOME SOL</strong><br>
+            <span style="font-size:12px; color:#ccccff;">Get SOL from Coinbase, Binance, Kraken etc. Send it to your Phantom wallet. You need SOL to buy $CHUNGUS!!!!</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <strong style="color:#ff00ff;">GO TO RAYDIUM OR JUPITER</strong><br>
+            <span style="font-size:12px; color:#ccccff;">Visit jup.ag or raydium.io. Connect your Phantom wallet. Paste the $CHUNGUS contract address!!</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <strong style="color:#ff00ff;">SWAP SOL FOR $CHUNGUS</strong><br>
+            <span style="font-size:12px; color:#ccccff;">Set slippage to 5-10%. Click SWAP. Confirm in Phantom. Welcome to the CHUNGUS ARMY!!!! &#127881;</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div>
+            <strong style="color:#ff00ff;">BECOME CHUNGUS</strong><br>
+            <span style="font-size:12px; color:#ccccff;">Big Chungus provides. Diamond hands. Never sell. You are now Big Chungus.</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- ROADMAP -->
+      <div id="roadmap">
+        <div class="big-text">&#9658; ROADMAP TO THE MOON</div>
+        <br>
+        <div class="box">
+          <h3>&#9654; PHASE 1 - THE CHUNGENING</h3>
+          <p style="font-size:12px; color:#ccffcc;">
+            &#10003; Launch $CHUNGUS on Solana<br>
+            &#10003; Build this sick website<br>
+            &#10003; Get 420 holders<br>
+            &#10003; Post memes on Twitter 24/7<br>
+            &#10003; Telegram group chaos
+          </p>
+        </div>
+        <div class="box">
+          <h3>&#9654; PHASE 2 - THE BIG CHUNGING</h3>
+          <p style="font-size:12px; color:#ccccff;">
+            &#9744; Get listed on CoinGecko + CMC<br>
+            &#9744; 10,000 holders<br>
+            &#9744; Trending on DexScreener<br>
+            &#9744; Celebrity tweets (manifesting)<br>
+            &#9744; $1M market cap (minimum)
+          </p>
+        </div>
+        <div class="box">
+          <h3>&#9654; PHASE 3 - CHUNGUS WORLD DOMINATION</h3>
+          <p style="font-size:12px; color:#ffcccc;">
+            &#9744; Big Chungus NFT collection<br>
+            &#9744; $CHUNGUS merch (hoodies, etc)<br>
+            &#9744; Elon tweets about us (inevitable)<br>
+            &#9744; CEX listings (u know which ones)<br>
+            &#9744; <span class="blink">$1 per $CHUNGUS</span>
+          </p>
+        </div>
+      </div>
+
+      <hr class="fancy">
+
+      <!-- COMMUNITY -->
+      <div id="community" class="center">
+        <div class="big-text">&#9658; JOIN THE CHUNGUS ARMY &#9658;</div>
+        <br>
+        <div style="font-family:Impact,'Arial Black',sans-serif; font-size:32px; color:#fff;
+                    -webkit-text-stroke:2px #ff00ff;
+                    text-shadow:3px 3px 0 #ff00ff, -3px 3px 0 #ff00ff;
+                    line-height:1.1; margin-bottom:8px;">
+          WE ARE ALL<br>BIG CHUNGUS
+        </div>
+        <p style="font-size:13px; color:#ddddff;">
+          We are thousands strong and growing every day!!!<br>
+          Big Chungus unites us all. Join now before it's too late!!
+        </p>
+        <div style="font-size:48px; letter-spacing:8px; margin: 10px 0;">&#128007; &#128007; &#128007;</div>
+        <br>
+        <div class="ca-box">
+          <div style="font-size:13px; color:#aaaaaa;">Contract Address:</div>
+          <div style="font-family:'Courier New',monospace; color:#ffff00; font-size:12px; word-break:break-all; margin: 4px 0;">
+            EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92
+          </div>
+          <button class="ca-copy-btn" onclick="copyCA()">&#128203; CLICK TO COPY CA</button>
+          <div id="copy-confirm" style="font-size:11px; color:#00ff00; height:14px; margin-top:3px;"></div>
+        </div>
+      </div>
+
+    </td>
+  </tr>
+
+  <!-- FOOTER -->
+  <tr>
+    <td colspan="2" class="footer">
+      <div class="marquee-bottom">
+        <marquee behavior="scroll" direction="right" scrollamount="3">
+          &#9733; $CHUNGUS IS NOT FINANCIAL ADVICE &#9733;
+          DO YOUR OWN RESEARCH &#9733;
+          CRYPTO IS RISKY &#9733;
+          BUT BIG CHUNGUS BELIEVES IN YOU &#9733;
+          WAGMI &#9733;
+        </marquee>
+      </div>
+      <br>
+      <div style="color:#555555; font-size:11px;">
+        &copy; 2024 $CHUNGUS | All Rights Reserved (lol jk it's a meme)<br>
+        <span class="blink" style="color:#ff0000;">THIS WEBSITE IS FOR ENTERTAINMENT PURPOSES ONLY. NOT FINANCIAL ADVICE.</span><br>
+        <br>
+        Made with &#9829; and BIG CHUNGUS ENERGY<br>
+        <span style="font-size:9px;">Best viewed at 800x600 in Internet Explorer 6 with Flash enabled</span>
+      </div>
+    </td>
+  </tr>
+
+</table>
+
+<!-- BOTTOM MARQUEE -->
+<div class="marquee-bottom" style="margin-top:0;">
+  <marquee behavior="scroll" direction="left" scrollamount="6">
+    $CHUNGUS $CHUNGUS $CHUNGUS *** BUY NOW *** DONT SAY I DIDN'T WARN YOU ***
+    THIS IS THE WAY *** WAGMI *** NGMI IF YOU DON'T BUY ***
+    HE IS BIG. HE IS CHUNGUS. *** $CHUNGUS $CHUNGUS $CHUNGUS
+  </marquee>
+</div>
+
+<script>
+  const CA  = 'EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92';
+  const API = 'https://api.dexscreener.com/latest/dex/tokens/' + CA;
+  let chartLoaded = false;
+
+  function fmt(n, d)  { return n != null ? Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}) : '--'; }
+  function fmtUsd(n)  {
+    if (!n) return '--';
+    n = Number(n);
+    if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+    return '$' + n.toFixed(2);
+  }
+  function fmtPrice(p) {
+    if (!p) return '--';
+    p = Number(p);
+    if (p < 0.000001) return '$' + p.toExponential(4);
+    if (p < 0.01)     return '$' + p.toFixed(9).replace(/0+$/,'');
+    return '$' + p.toFixed(6);
+  }
+  function setEl(id, val)     { const e = document.getElementById(id); if (e) e.textContent = val; }
+  function setChange(id, pct) {
+    const e = document.getElementById(id);
+    if (!e || pct == null) return;
+    const n = Number(pct);
+    e.textContent = (n >= 0 ? '▲ +' : '▼ ') + fmt(Math.abs(n), 2) + '%';
+    e.className = n >= 0 ? 'positive' : 'negative';
+  }
+
+  async function fetchPrice() {
+    try {
+      const res  = await fetch(API);
+      const data = await res.json();
+      const pairs = data.pairs;
+      if (!pairs || !pairs.length) { setEl('live-price', 'NO DATA'); return; }
+      const pair = pairs.sort((a,b) => (b.liquidity?.usd||0)-(a.liquidity?.usd||0))[0];
+
+      const price = pair.priceUsd;
+      const ch24  = pair.priceChange?.h24;
+      const mcap  = pair.fdv || pair.marketCap;
+
+      setEl('live-price',  fmtPrice(price));
+      setChange('live-change', ch24);
+      setEl('live-mcap',   fmtUsd(mcap));
+      setEl('live-vol',    fmtUsd(pair.volume?.h24));
+      setEl('live-liq',    fmtUsd(pair.liquidity?.usd));
+      setEl('live-buys',   pair.txns?.h24?.buys  ?? '--');
+      setEl('live-sells',  pair.txns?.h24?.sells ?? '--');
+      setEl('last-updated','updated ' + new Date().toLocaleTimeString());
+
+      setEl('tkn-price', fmtPrice(price));
+      setChange('tkn-change', ch24);
+      setEl('tkn-mcap', fmtUsd(mcap));
+
+      const chStr = ch24 != null ? (Number(ch24)>=0?' ▲+':' ▼') + fmt(Math.abs(ch24),2)+'%' : '';
+      setEl('marquee-price',      fmtPrice(price) + chStr);
+      setEl('chart-price-header', fmtPrice(price) + chStr);
+
+      if (!chartLoaded && pair.pairAddress) {
+        chartLoaded = true;
+        const iframe = document.getElementById('dex-chart');
+        iframe.src = 'https://dexscreener.com/solana/' + pair.pairAddress + '?embed=1&theme=dark&trades=0&info=0';
+        iframe.style.display = 'block';
+        document.getElementById('chart-loading').style.display = 'none';
+      }
+    } catch(e) {
+      setEl('live-price', 'ERR');
+      setEl('last-updated', 'fetch failed — retrying...');
+    }
+  }
+
+  function copyCA() {
+    navigator.clipboard.writeText(CA).then(() => {
+      const e = document.getElementById('copy-confirm');
+      e.textContent = '✓ Copied to clipboard!!';
+      setTimeout(() => { e.textContent = ''; }, 2000);
+    });
+  }
+
+  fetchPrice();
+  setInterval(fetchPrice, 30000);
+</script>
+
+</body>
+</html>
