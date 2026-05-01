@@ -266,11 +266,18 @@
   }
 
   function toggleFullscreen() {
-    // Try native Fullscreen API first (works in most browsers)
     if (!document.fullscreenElement) {
-      container.requestFullscreen().catch(() => cssFullscreen());
+      // Fullscreen the whole page — most reliable across browsers
+      (document.documentElement.requestFullscreen
+        || document.documentElement.webkitRequestFullscreen
+        || document.documentElement.mozRequestFullScreen
+        || (() => cssFullscreen())
+      ).call(document.documentElement).catch(() => cssFullscreen());
     } else {
-      document.exitFullscreen();
+      (document.exitFullscreen
+        || document.webkitExitFullscreen
+        || document.mozCancelFullScreen
+      ).call(document);
     }
   }
 
@@ -282,9 +289,11 @@
     document.body.style.overflow = isFs ? 'hidden' : '';
   }
 
-  document.addEventListener('fullscreenchange', () => {
-    const isFs = !!document.fullscreenElement;
-    setLabel(isFs ? '&#9715; EXIT' : '&#9974; FULLSCREEN');
+  ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange'].forEach(ev => {
+    document.addEventListener(ev, () => {
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+      setLabel(isFs ? '&#9715; EXIT' : '&#9974; FULLSCREEN');
+    });
   });
 
   // ESC key exits CSS fullscreen too
