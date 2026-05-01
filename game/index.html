@@ -9,6 +9,11 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
       background-color: #000033;
       background-image:
@@ -17,7 +22,7 @@
       background-size: 40px 40px, 20px 20px;
       color: #ffff00;
       font-family: 'Comic Neue', 'Comic Sans MS', cursive;
-      min-height: 100vh;
+      height: 100%;
       display: flex;
       flex-direction: column;
     }
@@ -125,7 +130,26 @@
       display: block;
     }
 
-    /* true fullscreen overlay */
+    /* native fullscreen — all vendor prefixes */
+    #game-container:fullscreen,
+    #game-container:-webkit-full-screen,
+    #game-container:-moz-full-screen,
+    #game-container:-ms-fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      border: none;
+      box-shadow: none;
+    }
+    #game-container:fullscreen iframe,
+    #game-container:-webkit-full-screen iframe,
+    #game-container:-moz-full-screen iframe,
+    #game-container:-ms-fullscreen iframe {
+      height: 100vh !important;
+      min-height: unset !important;
+    }
+
+    /* CSS fallback fullscreen */
     .game-frame-outer.fullscreen-mode {
       position: fixed;
       inset: 0;
@@ -137,8 +161,8 @@
       box-shadow: none;
     }
     .game-frame-outer.fullscreen-mode iframe {
-      height: 100%;
-      min-height: unset;
+      height: 100% !important;
+      min-height: unset !important;
     }
 
     .fs-btn {
@@ -227,8 +251,8 @@
   const btnOverlay = document.getElementById('fs-overlay-btn');
 
   function setLabel(txt) {
-    btnHeader.textContent  = txt;
-    btnOverlay.textContent = txt;
+    btnHeader.innerHTML  = txt;
+    btnOverlay.innerHTML = txt;
   }
 
   function toggleFullscreen() {
