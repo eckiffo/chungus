@@ -584,7 +584,7 @@
       <div class="box">
         <h3>&#9658; VISITORS</h3>
         <div style="text-align:center; margin: 4px 0;">
-          <div class="counter">0069420</div>
+          <div class="counter" id="visitor-count">-------</div>
         </div>
         <div style="font-size:10px; text-align:center; color:#aaaaaa;">visitors since launch</div>
       </div>
@@ -1107,8 +1107,23 @@
     });
   }
 
+  async function fetchVisitorCount() {
+    try {
+      const res  = await fetch('https://api.countapi.xyz/hit/chungus.site/visitors');
+      const data = await res.json();
+      const el   = document.getElementById('visitor-count');
+      if (el && data.value != null) {
+        el.textContent = String(data.value).padStart(7, '0');
+      }
+    } catch(e) {
+      const el = document.getElementById('visitor-count');
+      if (el) el.textContent = '???????';
+    }
+  }
+
   fetchPrice();
   setInterval(fetchPrice, 30000);
+  fetchVisitorCount();
 </script>
 
 </body>
