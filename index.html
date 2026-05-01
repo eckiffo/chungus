@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>$CHUNGUS - THE BIGGEST COIN ON THE INTERNET!!!</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
@@ -91,6 +92,7 @@
 
     .main-table {
       width: 860px;
+      max-width: 100%;
       margin: 0 auto;
       border: 4px solid #ff00ff;
       background: #000022;
@@ -406,6 +408,26 @@
 
     a { color: #ff00ff; }
     a:hover { color: #00ffff; }
+
+    @media (max-width: 700px) {
+      .main-table, .main-table tbody, .main-table tr, .main-table td {
+        display: block !important;
+        width: 100% !important;
+      }
+      .sidebar {
+        width: 100% !important;
+        border-right: none;
+        border-bottom: 3px solid #00ffff;
+      }
+      .content { padding: 10px; }
+      .site-title { font-size: 36px; letter-spacing: 2px; }
+      .meme-gallery { grid-template-columns: 1fr; }
+      .chart-iframe { height: 280px; }
+      .chart-loading { height: 280px; }
+      .chungus-hero img { max-width: 200px; }
+      .ca-box { width: 100%; box-sizing: border-box; }
+      .big-text { font-size: 18px; }
+    }
 
     hr.fancy {
       border: none;
