@@ -76,9 +76,16 @@
       margin-top: 4px;
     }
 
-    .back-btn {
+    .header-btns {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .retro-btn {
       display: inline-block;
-      margin-top: 6px;
       padding: 5px 16px;
       background: linear-gradient(180deg, #660099, #330066);
       border: 2px outset #ff00ff;
@@ -88,8 +95,9 @@
       font-size: 12px;
       text-decoration: none;
       text-shadow: 0 0 6px #ff00ff;
+      cursor: pointer;
     }
-    .back-btn:hover { background: linear-gradient(180deg, #ff00ff, #880088); }
+    .retro-btn:hover { background: linear-gradient(180deg, #ff00ff, #880088); border-style: inset; }
 
     .game-wrap {
       flex: 1;
@@ -111,10 +119,44 @@
 
     .game-frame-outer iframe {
       width: 100%;
-      height: 600px;
+      height: 70vh;
+      min-height: 400px;
       border: none;
       display: block;
     }
+
+    /* true fullscreen overlay */
+    .game-frame-outer.fullscreen-mode {
+      position: fixed;
+      inset: 0;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      border: none;
+      box-shadow: none;
+    }
+    .game-frame-outer.fullscreen-mode iframe {
+      height: 100%;
+      min-height: unset;
+    }
+
+    .fs-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 10;
+      padding: 4px 10px;
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #ff00ff;
+      color: #ffff00;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 0 0 6px #ff00ff;
+    }
+    .fs-btn:hover { background: #ff00ff; color: #000; }
 
     .hint {
       font-size: 12px;
@@ -134,7 +176,6 @@
 
     @media (max-width: 600px) {
       .header h1 { font-size: 26px; }
-      .game-frame-outer iframe { height: 420px; }
     }
   </style>
 </head>
@@ -150,12 +191,17 @@
 <div class="header">
   <h1>&#127007; CHUNGUS JUMPER</h1>
   <p>HE JUMPED THE BONDING CURVE. NOW HE JUMPS EVERYTHING.</p>
-  <a class="back-btn" href="/">&#9668; BACK TO $CHUNGUS</a>
+  <div class="header-btns">
+    <a class="retro-btn" href="/">&#9668; BACK TO $CHUNGUS</a>
+    <button class="retro-btn" onclick="toggleFullscreen()" id="fs-header-btn">&#9974; FULLSCREEN</button>
+  </div>
 </div>
 
 <div class="game-wrap">
-  <div class="game-frame-outer">
+  <div class="game-frame-outer" id="game-container">
+    <button class="fs-btn" onclick="toggleFullscreen()" id="fs-overlay-btn">&#9974; FULLSCREEN</button>
     <iframe
+      id="game-iframe"
       src="https://chungus-jumper.vercel.app/"
       title="Chungus Jumper Game"
       allow="fullscreen"
@@ -163,7 +209,8 @@
     </iframe>
   </div>
   <div class="hint">
-    CONTROLS: <span>ARROW KEYS</span> or <span>A / D</span> to move &nbsp;|&nbsp; <span>SPACE / UP</span> to jump &nbsp;|&nbsp; Touch supported on mobile
+    CONTROLS: <span>ARROW KEYS</span> or <span>A / D</span> to move &nbsp;|&nbsp;
+    <span>SPACE / UP</span> to jump &nbsp;|&nbsp; Touch supported on mobile
   </div>
 </div>
 
@@ -172,6 +219,47 @@
   NOT FINANCIAL ADVICE. BIG CHUNGUS IS NOT RESPONSIBLE FOR YOUR HIGH SCORE.
   &nbsp;&mdash;&nbsp; <a href="/" style="color:#ff00ff;">chungus.site</a>
 </div>
+
+<script>
+  const container = document.getElementById('game-container');
+  const iframe    = document.getElementById('game-iframe');
+  const btnHeader = document.getElementById('fs-header-btn');
+  const btnOverlay = document.getElementById('fs-overlay-btn');
+
+  function setLabel(txt) {
+    btnHeader.textContent  = txt;
+    btnOverlay.textContent = txt;
+  }
+
+  function toggleFullscreen() {
+    // Try native Fullscreen API first (works in most browsers)
+    if (!document.fullscreenElement) {
+      container.requestFullscreen().catch(() => cssFullscreen());
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  // Fallback: CSS-based fullscreen if API is blocked
+  function cssFullscreen() {
+    container.classList.toggle('fullscreen-mode');
+    const isFs = container.classList.contains('fullscreen-mode');
+    setLabel(isFs ? '&#9715; EXIT' : '&#9974; FULLSCREEN');
+    document.body.style.overflow = isFs ? 'hidden' : '';
+  }
+
+  document.addEventListener('fullscreenchange', () => {
+    const isFs = !!document.fullscreenElement;
+    setLabel(isFs ? '&#9715; EXIT' : '&#9974; FULLSCREEN');
+  });
+
+  // ESC key exits CSS fullscreen too
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && container.classList.contains('fullscreen-mode')) {
+      cssFullscreen();
+    }
+  });
+</script>
 
 </body>
 </html>
