@@ -43,13 +43,23 @@
   </style>
 </head>
 <body>
-  <iframe
+  <iframe id="chungus-game"
     src="https://chungus-jumper.vercel.app/"
     title="Chungus Jumper"
-    allow="fullscreen"
-    allowfullscreen
-    scrolling="no">
+    width="100%" height="700"
+    allow="autoplay; fullscreen; clipboard-write"
+    style="border:0;">
   </iframe>
   <a class="back-btn" href="/">&#9668; $CHUNGUS</a>
+
+  <script>
+    const room = new URLSearchParams(location.search).get('room');
+    if (room) {
+      const iframe = document.getElementById('chungus-game');
+      const send = () => iframe.contentWindow.postMessage({ type: 'chungus-room', code: room }, '*');
+      iframe.addEventListener('load', send);
+      window.addEventListener('message', (ev) => { if (ev.data?.type === 'chungus-ready') send(); });
+    }
+  </script>
 </body>
 </html>
