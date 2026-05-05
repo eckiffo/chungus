@@ -16,6 +16,7 @@
   <meta name="twitter:image" content="https://chungus.site/big-chungus-emoji.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" href="bigC.png" type="image/png">
   <style>
     :root {
       --red:    #CC0000;
@@ -33,6 +34,7 @@
 
     body {
       background: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23000' fill-opacity='0.04'/%3E%3C/svg%3E");
       color: var(--black);
       font-family: 'Comic Neue', 'Comic Sans MS', cursive;
       overflow-x: hidden;
@@ -96,32 +98,47 @@
 
     /* ── HERO ── */
     .hero {
-      background: #150000;
+      background:
+        radial-gradient(ellipse 60% 90% at 12% 50%,
+          rgba(255,100,0,0.55) 0%,
+          rgba(180,20,0,0.4)  25%,
+          transparent         65%),
+        radial-gradient(ellipse at 12% 50%,
+          #FF4400  0%,
+          #CC1100 18%,
+          #880000 38%,
+          #440000 60%,
+          #150000 100%);
       border-bottom: 5px solid var(--black);
-      padding: 70px 48px;
+      padding: 80px 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 64px;
       position: relative;
       overflow: hidden;
-      min-height: 440px;
+      min-height: 460px;
     }
     @keyframes spin-disc {
       from { transform: translate(-50%, -50%) rotate(0deg); }
       to   { transform: translate(-50%, -50%) rotate(360deg); }
     }
+    @keyframes spin-logo {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
     .lt-disc {
       position: absolute;
       left: 10%;
       top: 50%;
-      width: 420px;
-      height: 420px;
+      width: 480px;
+      height: 480px;
       border-radius: 50%;
-      animation: spin-disc 8s linear infinite;
-      opacity: 0.85;
+      animation: spin-disc 10s linear infinite;
+      opacity: 0.9;
       pointer-events: none;
       object-fit: cover;
+      filter: drop-shadow(0 0 40px rgba(255,80,0,0.5));
     }
     .hero-content { position: relative; z-index: 1; }
     .hero-title {
@@ -169,9 +186,9 @@
     }
     .hero-img { position: relative; z-index: 1; flex-shrink: 0; }
     .hero-img img {
-      width: 240px;
+      width: 260px;
       border: 5px solid var(--black);
-      box-shadow: 8px 8px 0 var(--red);
+      box-shadow: 8px 8px 0 var(--red), 0 0 40px rgba(255,80,0,0.3);
       animation: floatup 3s ease-in-out infinite;
       image-rendering: pixelated;
     }
@@ -466,6 +483,54 @@
     }
     .blink { animation: blink 0.8s step-start infinite; }
 
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── MEME SECTION ALT BG ── */
+    .section-dark {
+      background: #1A0A00;
+      border-top: 4px solid var(--black);
+      border-bottom: 4px solid var(--black);
+    }
+    .section-dark .section-title {
+      color: var(--yellow);
+      text-shadow: 4px 4px 0 var(--red);
+      -webkit-text-stroke: 2px var(--black);
+    }
+    .section-dark .meme-card {
+      box-shadow: 4px 4px 0 var(--yellow);
+    }
+    .section-dark .meme-card:hover {
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+
+    /* ── STAT FLASH ── */
+    @keyframes stat-flash {
+      0%   { background: rgba(255,215,0,0.25); }
+      100% { background: transparent; }
+    }
+    .stat-flash { animation: stat-flash 0.6s ease-out; }
+
+    /* ── COMMUNITY BG ── */
+    .community-section {
+      background:
+        radial-gradient(ellipse 50% 80% at 90% 50%,
+          rgba(255,80,0,0.3) 0%,
+          transparent 70%),
+        #150000;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .hero { flex-direction: column; padding: 40px 20px; gap: 32px; min-height: auto; }
@@ -500,7 +565,10 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <span class="nav-logo">$CHUNGUS</span>
+  <span class="nav-logo">
+    <img src="bigC.png" alt="" style="width:30px;height:30px;border-radius:50%;vertical-align:middle;margin-right:8px;animation:spin-logo 8s linear infinite;">
+    $CHUNGUS
+  </span>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#memes">Memes</a>
@@ -562,7 +630,7 @@
 
 <!-- ABOUT -->
 <hr class="divider">
-<div class="section-wrap" id="about">
+<div class="section-wrap reveal" id="about">
   <span class="section-title">&#9658; ABOUT $CHUNGUS</span>
   <div class="about-quote">
     "I have studied the blockchain for many years. I have concluded: BIG CHUNGUS."
@@ -577,8 +645,8 @@
 </div>
 
 <!-- MEME GALLERY -->
-<hr class="divider">
-<div class="section-wrap" id="memes">
+<div class="section-dark">
+<div class="section-wrap reveal" id="memes">
   <span class="section-title">&#9658; MEME GALLERY</span>
   <div class="meme-grid">
 
@@ -620,10 +688,11 @@
 
   </div>
 </div>
+</div>
 
 <!-- CHART -->
 <hr class="divider">
-<div class="section-wrap" id="chart">
+<div class="section-wrap reveal" id="chart">
   <span class="section-title">&#9658; LIVE CHART</span>
   <div class="chart-wrap">
     <div class="chart-hdr">
@@ -637,7 +706,7 @@
 
 <!-- TOKENOMICS -->
 <hr class="divider">
-<div class="section-wrap" id="tokenomics">
+<div class="section-wrap reveal" id="tokenomics">
   <span class="section-title">&#9658; TOKENOMICS</span>
   <table class="tknomics">
     <tr><th>Item</th><th>Details</th></tr>
@@ -660,7 +729,7 @@
 
 <!-- HOW TO BUY -->
 <hr class="divider">
-<div class="section-wrap" id="howtobuy">
+<div class="section-wrap reveal" id="howtobuy">
   <span class="section-title">&#9658; HOW 2 BUY</span>
   <div class="steps">
     <div class="step">
@@ -703,7 +772,7 @@
 
 <!-- ROADMAP -->
 <hr class="divider">
-<div class="section-wrap" id="roadmap">
+<div class="section-wrap reveal" id="roadmap">
   <span class="section-title">&#9658; ROADMAP</span>
   <div class="roadmap-grid">
     <div class="phase-card">
@@ -816,6 +885,7 @@
 
       setEl('live-price',  fmtPrice(price));
       setEl('nav-price',   fmtPrice(price));
+      document.querySelectorAll('.stat-item').forEach(el => { el.classList.remove('stat-flash'); void el.offsetWidth; el.classList.add('stat-flash'); });
       setChange('live-change', ch24);
       setEl('live-mcap',   fmtUsd(mcap));
       setEl('live-vol',    fmtUsd(pair.volume?.h24));
@@ -868,6 +938,12 @@
   fetchPrice();
   setInterval(fetchPrice, 30000);
   fetchVisitorCount();
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // twerk popup
   (function() {
