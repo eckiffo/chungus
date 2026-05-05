@@ -840,6 +840,7 @@
 
 <!-- MUSIC -->
 <audio id="bg-music" src="theme.m4a" loop></audio>
+
 <button id="music-btn" onclick="toggleMusic()" title="Toggle music" style="
   position: fixed;
   bottom: 24px;
@@ -956,12 +957,31 @@
     } catch(e) {}
   }
 
+  const audio = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-btn');
+
   function toggleMusic() {
-    const audio = document.getElementById('bg-music');
-    const btn   = document.getElementById('music-btn');
-    if (audio.paused) { audio.play(); btn.textContent = '🔊'; }
-    else              { audio.pause(); btn.textContent = '🔇'; }
+    audio.muted = !audio.muted;
+    musicBtn.textContent = audio.muted ? '🔇' : '🔊';
   }
+
+  // try autoplay on load; if browser blocks it, unmute on first click anywhere
+  audio.muted = false;
+  audio.play().then(() => {
+    musicBtn.textContent = '🔊';
+  }).catch(() => {
+    audio.muted = true;
+    musicBtn.textContent = '🔇';
+    musicBtn.style.animation = 'pulse-dot 1s ease-in-out infinite';
+    const unlock = () => {
+      audio.muted = false;
+      audio.play();
+      musicBtn.textContent = '🔊';
+      musicBtn.style.animation = '';
+      document.removeEventListener('click', unlock);
+    };
+    document.addEventListener('click', unlock);
+  });
 
   fetchPrice();
   setInterval(fetchPrice, 30000);
