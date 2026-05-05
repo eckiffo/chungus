@@ -530,6 +530,120 @@
         #150000;
     }
 
+    /* ── FILM GRAIN ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99999;
+      opacity: 0.055;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      animation: grain 0.12s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      10%  { transform: translate(-2%,-3%); }
+      20%  { transform: translate(-5%,2%); }
+      30%  { transform: translate(3%,-8%); }
+      40%  { transform: translate(-2%,8%); }
+      50%  { transform: translate(-5%,3%); }
+      60%  { transform: translate(5%,0); }
+      70%  { transform: translate(0,5%); }
+      80%  { transform: translate(1%,10%); }
+      90%  { transform: translate(-3%,3%); }
+    }
+
+    /* ── EPISODE LABELS ── */
+    .episode-label {
+      background: #0A0300;
+      color: var(--yellow);
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 5px 8px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    /* ── CHUNGUS SAYS ── */
+    .chungus-says {
+      background: #0A0000;
+      border-top: 4px solid var(--black);
+      border-bottom: 4px solid var(--black);
+      text-align: center;
+      padding: 60px 40px;
+    }
+    .says-hdr {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 13px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 28px;
+    }
+    .says-bubble {
+      display: inline-block;
+      background: #1A0500;
+      border: 4px solid var(--yellow);
+      box-shadow: 8px 8px 0 var(--red);
+      padding: 36px 48px;
+      max-width: 700px;
+      width: 100%;
+    }
+    .says-quote {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 30px;
+      color: var(--yellow);
+      -webkit-text-stroke: 1px var(--black);
+      text-shadow: 3px 3px 0 var(--red);
+      line-height: 1.25;
+      font-style: italic;
+      transition: opacity 0.3s ease;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .says-attr {
+      display: block;
+      margin-top: 16px;
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .says-next-btn {
+      margin-top: 28px;
+      padding: 10px 28px;
+      background: var(--red);
+      color: var(--yellow);
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 16px;
+      border: 3px solid var(--black);
+      box-shadow: 4px 4px 0 var(--black);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .says-next-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--black); }
+
+    /* ── FOOTER STUDIO ── */
+    .footer-studio {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 20px;
+      color: var(--yellow);
+      -webkit-text-stroke: 1px var(--black);
+      letter-spacing: 4px;
+      margin-bottom: 4px;
+    }
+    .footer-tagline { font-size: 13px; color: #555; margin-bottom: 14px; font-style: italic; }
+    .footer-legal { margin: 10px 0; line-height: 1.7; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .hero { flex-direction: column; padding: 40px 20px; gap: 32px; min-height: auto; }
@@ -592,7 +706,7 @@
       margin-bottom: 8px;
       display: block;
     ">
-    <div class="hero-sub">The Financial Advisor of Our Generation</div>
+    <div class="hero-sub">Ladies &amp; gentlemen... boys &amp; girls... degens of all ages... BEHOLD.</div>
     <div class="hero-btns">
       <a class="btn btn-red" href="https://dexscreener.com/solana/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank">BUY NOW</a>
       <a class="btn btn-yellow" href="#tokenomics">TOKENOMICS</a>
@@ -653,6 +767,17 @@
   </div>
 </div>
 
+<!-- CHUNGUS SAYS -->
+<div class="chungus-says reveal">
+  <div class="says-hdr">&#9658;&#9658;&#9658; Chungus Says &#9668;&#9668;&#9668;</div>
+  <div class="says-bubble">
+    <div class="says-quote" id="says-quote">"Ehhhh... what's up, dip?"</div>
+    <span class="says-attr">— Big Chungus, financial analyst</span>
+  </div>
+  <br>
+  <button class="says-next-btn" onclick="nextQuote()">Another One</button>
+</div>
+
 <!-- MEME GALLERY -->
 <div class="section-dark">
 <div class="section-wrap reveal" id="memes">
@@ -660,36 +785,42 @@
   <div class="meme-grid">
 
     <div class="meme-card">
+      <div class="episode-label">Ep. 1 — "Wabbit Season... But Make It Solana"</div>
       <span class="meme-top-txt">ME CHECKING MY PORTFOLIO</span>
       <img src="BigChungus0.webp" alt="Big Chungus">
       <span class="meme-bot-txt">AFTER BUYING $CHUNGUS</span>
     </div>
 
     <div class="meme-card">
+      <div class="episode-label">Ep. 2 — "Big Chungus Twouble"</div>
       <span class="meme-top-txt">OTHER COINS: "WE HAVE UTILITY"</span>
       <img src="big-chungus-v0-bz6w2a9w7i6d1.webp" alt="Big Chungus">
       <span class="meme-bot-txt">$CHUNGUS: "INTERESTING"</span>
     </div>
 
     <div class="meme-card">
+      <div class="episode-label">Ep. 3 — "The Chungus of Seville"</div>
       <span class="meme-top-txt">WHEN THE CHART GOES UP</span>
       <img src="superkevin64.gif" alt="Super Kevin 64">
       <span class="meme-bot-txt">WE ARE SO BACK</span>
     </div>
 
     <div class="meme-card">
+      <div class="episode-label">Ep. 4 — "A Wild Hare of Profit"</div>
       <span class="meme-top-txt">WHEN $CHUNGUS PUMPS 1000%</span>
       <img src="BigChungus0.webp" alt="Big Chungus">
       <span class="meme-bot-txt">WAGMI FRENS</span>
     </div>
 
     <div class="meme-card">
+      <div class="episode-label">Ep. 5 — "Bully for Chungus"</div>
       <span class="meme-top-txt">MY PORTFOLIO BE LIKE</span>
       <img src="il_fullxfull.4379760908_ij4v.webp" alt="Big Chungus">
       <span class="meme-bot-txt">BIG CHUNGUS PROTECTS</span>
     </div>
 
     <div class="meme-card">
+      <div class="episode-label">Ep. 6 — "What's Up, Market Cap?"</div>
       <span class="meme-top-txt">NORMIES: "WHAT'S YOUR STRATEGY?"</span>
       <img src="big-chungus-emoji.png" alt="Big Chungus" style="object-fit:contain; background:#F5E8C0;">
       <span class="meme-bot-txt">BUY → ??? → CHUNGUS → PROFIT</span>
@@ -839,9 +970,13 @@
 
 <!-- FOOTER -->
 <div class="footer">
-  © 2018 $CHUNGUS — All Rights Reserved (lol jk it's a meme)<br>
-  <span class="blink" style="color:#CC0000;">THIS WEBSITE IS FOR ENTERTAINMENT PURPOSES ONLY. NOT FINANCIAL ADVICE.</span><br><br>
-  Made with ♥ and BIG CHUNGUS ENERGY
+  <div class="footer-studio">⬛ CHUNGUS STUDIOS ⬛</div>
+  <div class="footer-tagline">A Chungus–Tunes Production · Est. 1941 · Relaunched on Solana 2026</div>
+  <div class="footer-legal">
+    <span class="blink" style="color:#CC0000;">THIS PRESENTATION IS FOR ENTERTAINMENT PURPOSES ONLY. NOT FINANCIAL ADVICE.</span><br>
+    "Big Chungus" is a meme. No affiliation with Warner Bros., Bugs Bunny, or anyone with a lawyer.
+  </div>
+  Made with ♥ and BIG CHUNGUS ENERGY &nbsp;|&nbsp; <a href="https://x.com/BigChungusOG" target="_blank" style="color:#666;">@BigChungusOG</a>
 </div>
 
 <!-- MUSIC -->
@@ -998,6 +1133,35 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // chungus says quotes
+  const chungusQuotes = [
+    '"Ehhhh... what\'s up, dip?"',
+    '"I\'m not like other memecoins. I\'m chunky."',
+    '"Buy the dip. Become the dip. Be the Chungus."',
+    '"Every sell is just a delayed buy."',
+    '"The bag is heavy because it is full of gains."',
+    '"You cannot rug what you cannot catch."',
+    '"My portfolio is big. My conviction is bigger."',
+    '"They called me big for a reason."',
+    '"In this economy? Diamond hands only."',
+    '"Ehhhh... what\'s up, market cap?"',
+    '"Paper hands are for paper rabbits."',
+    '"I have studied the charts. They are big. Like me."',
+    '"WAGMI. Except you. You know what you did."',
+    '"The moon is not the destination. It is merely the first stop."',
+  ];
+  let quoteIdx = 0;
+  function nextQuote() {
+    const el = document.getElementById('says-quote');
+    el.style.opacity = '0';
+    setTimeout(() => {
+      quoteIdx = (quoteIdx + 1) % chungusQuotes.length;
+      el.textContent = chungusQuotes[quoteIdx];
+      el.style.opacity = '1';
+    }, 300);
+  }
+  setInterval(nextQuote, 8000);
 
   // gif popups
   (function() {
