@@ -20,11 +20,8 @@
     * { box-sizing: border-box; }
 
     body {
-      background-color: #FFFEF2;
-      background-image:
-        radial-gradient(circle, #CC000015 1px, transparent 1px),
-        radial-gradient(circle, #FFD70030 1px, transparent 1px);
-      background-size: 40px 40px, 20px 20px;
+      background-color: #F2E4C4;
+      background-image: none;
       color: #1A1A1A;
       font-family: 'Comic Neue', 'Comic Sans MS', cursive;
       margin: 0;
@@ -97,6 +94,31 @@
     }
     .floatup { animation: floatup 2.5s ease-in-out infinite; }
 
+    @keyframes spin-disc {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .lt-disc {
+      position: absolute;
+      left: 12%;
+      top: 50%;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: repeating-conic-gradient(
+        #CC0000 0deg 9deg,
+        #880000 9deg 18deg
+      );
+      animation: spin-disc 5s linear infinite;
+      opacity: 0.92;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes title-pop {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.015); }
+    }
+
     /* ===== LAYOUT ===== */
     .center { text-align: center; }
 
@@ -110,14 +132,17 @@
     }
 
     .header-cell {
-      background: linear-gradient(135deg, #CC0000, #DD2200, #FFD700, #DD2200, #CC0000);
-      padding: 10px;
-      border-bottom: 4px solid #1A1A1A;
+      background: #1A0000;
+      padding: 20px 10px;
+      border-bottom: 5px solid #1A1A1A;
+      position: relative;
+      overflow: hidden;
     }
+    .header-cell > * { position: relative; z-index: 1; }
 
     .sidebar {
       width: 190px;
-      background: #FFF8DC;
+      background: #E8D5A3;
       border-right: 4px solid #1A1A1A;
       padding: 10px;
       vertical-align: top;
@@ -126,17 +151,20 @@
     .content {
       padding: 15px;
       vertical-align: top;
-      background: #FFFFFF;
+      background: #FAF0D7;
     }
 
     .site-title {
-      font-size: 52px;
+      font-size: 72px;
       font-weight: 900;
-      animation: glow 1.5s ease-in-out infinite, rainbow 1.2s linear infinite;
+      font-family: Impact, 'Arial Black', sans-serif;
+      color: #FFFFFF;
+      -webkit-text-stroke: 4px #1A1A1A;
+      text-shadow: 6px 6px 0 #CC0000;
       text-transform: uppercase;
-      letter-spacing: 4px;
+      letter-spacing: 6px;
       line-height: 1.1;
-      -webkit-text-stroke: 2px #1A1A1A;
+      animation: title-pop 2s ease-in-out infinite;
     }
 
     .box {
@@ -198,7 +226,7 @@
 
     /* ===== CHUNGUS HERO ===== */
     .chungus-hero {
-      background: #FFF8DC;
+      background: #F5E8C0;
       border: 5px solid #1A1A1A;
       box-shadow: 5px 5px 0 #CC0000;
       padding: 12px;
@@ -236,7 +264,7 @@
     .meme-img-area {
       width: 100%;
       min-height: 120px;
-      background: #FFF8DC;
+      background: #F5E8C0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -305,7 +333,7 @@
       color: #CC0000;
       font-family: 'Courier New', monospace;
       font-size: 14px;
-      background: #FFF8DC;
+      background: #F5E8C0;
     }
 
     /* ===== TOKENOMICS ===== */
@@ -327,7 +355,7 @@
       padding: 6px;
       color: #1A1A1A;
     }
-    .tknomics tr:nth-child(even) td { background: #FFF8DC; }
+    .tknomics tr:nth-child(even) td { background: #F5E8C0; }
     .tknomics tr:nth-child(odd)  td { background: #FFFFFF; }
 
     /* ===== MARQUEES ===== */
@@ -398,7 +426,7 @@
     }
 
     .footer {
-      background: #FFF8DC;
+      background: #F5E8C0;
       border-top: 4px solid #1A1A1A;
       padding: 10px;
       text-align: center;
@@ -445,7 +473,7 @@
     }
 
     .warning-box {
-      background: #FFF8DC;
+      background: #F5E8C0;
       border: 3px solid #CC0000;
       color: #CC0000;
       padding: 8px;
@@ -456,7 +484,7 @@
     }
 
     .ca-box {
-      background: #FFF8DC;
+      background: #F5E8C0;
       border: 3px dashed #1A1A1A;
       padding: 10px;
       display: inline-block;
@@ -481,7 +509,7 @@
 
     /* chungus quote box */
     .chungus-quote {
-      background: #FFF8DC;
+      background: #F5E8C0;
       border-left: 6px solid #CC0000;
       border-right: 6px solid #FFD700;
       border-top: 3px solid #1A1A1A;
@@ -514,6 +542,7 @@
   <!-- HEADER -->
   <tr>
     <td colspan="2" class="header-cell center">
+      <div class="lt-disc"></div>
       <div>
         <span class="star">&#10022;</span>
         <span class="star">&#9733;</span>
@@ -528,9 +557,9 @@
                   margin:4px 0; letter-spacing:2px;">
         IS THIS A GOOD INVESTMENT?
       </div>
-      <div style="font-family:Impact,'Arial Black',sans-serif; font-size:26px; color:#FFD700;
-                  -webkit-text-stroke:2px #1A1A1A;
-                  text-shadow:3px 3px 0 #1A1A1A,-3px 3px 0 #1A1A1A;
+      <div style="font-family:Impact,'Arial Black',sans-serif; font-size:28px; color:#FFD700;
+                  -webkit-text-stroke:2px #000;
+                  text-shadow:3px 3px 0 #000,-3px 3px 0 #000;
                   letter-spacing:3px;">
         YES. YES IT IS.
       </div>
@@ -733,7 +762,7 @@
             <div class="meme-card-inner">
               <span class="meme-top">FINANCIAL ADVISOR SAYS:</span>
               <div class="meme-img-area" style="padding:0; flex-direction:column;">
-                <img src="big-chungus-emoji.png" alt="Big Chungus" style="width:100%; height:130px; object-fit:contain; display:block; image-rendering:pixelated; background:#FFF8DC; padding:8px;">
+                <img src="big-chungus-emoji.png" alt="Big Chungus" style="width:100%; height:130px; object-fit:contain; display:block; image-rendering:pixelated; background:#F5E8C0; padding:8px;">
                 <div style="font-family:Impact,'Arial Black',sans-serif; font-size:24px;
                             color:#CC0000; -webkit-text-stroke:2px #000;
                             text-shadow:3px 3px 0 #000; text-align:center; padding:4px 0 2px; line-height:1;">
@@ -797,7 +826,7 @@
             <div class="meme-card-inner">
               <span class="meme-top">NORMIES: "WHAT'S YOUR STRATEGY?"</span>
               <div class="meme-img-area" style="padding:0; flex-direction:column;">
-                <img src="big-chungus-emoji.png" alt="Big Chungus" style="width:100%; height:130px; object-fit:contain; display:block; image-rendering:pixelated; background:#FFF8DC; padding:8px;">
+                <img src="big-chungus-emoji.png" alt="Big Chungus" style="width:100%; height:130px; object-fit:contain; display:block; image-rendering:pixelated; background:#F5E8C0; padding:8px;">
                 <div style="font-size:11px; color:#CC0000; font-family:'Courier New',monospace; text-align:center; padding:4px 0 2px; line-height:1.6;">
                   BUY → ??? → CHUNGUS → PROFIT
                 </div>
