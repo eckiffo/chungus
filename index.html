@@ -186,11 +186,10 @@
     }
     .hero-img { position: relative; z-index: 1; flex-shrink: 0; }
     .hero-img img {
-      width: 260px;
-      border: 5px solid var(--black);
-      box-shadow: 8px 8px 0 var(--red), 0 0 40px rgba(255,80,0,0.3);
+      width: 300px;
+      border: none;
+      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(255,80,0,0.4));
       animation: floatup 3s ease-in-out infinite;
-      image-rendering: pixelated;
     }
 
     /* ── STATS BAR ── */
@@ -595,7 +594,7 @@
     </div>
   </div>
   <div class="hero-img">
-    <img src="big-chungus-emoji.png" alt="Big Chungus">
+    <img src="BigChungus0.webp" alt="Big Chungus">
   </div>
 </div>
 
@@ -632,16 +631,20 @@
 <hr class="divider">
 <div class="section-wrap reveal" id="about">
   <span class="section-title">&#9658; ABOUT $CHUNGUS</span>
-  <div class="about-quote">
-    "I have studied the blockchain for many years. I have concluded: BIG CHUNGUS."
-    <span>— Sun Tzu, The Art of Degen (probably)</span>
+  <div style="display:flex; gap:40px; align-items:center; flex-wrap:wrap;">
+    <img src="BigChungus0.webp" alt="Big Chungus" style="width:220px; flex-shrink:0; filter:drop-shadow(6px 6px 0 var(--red));">
+    <div style="flex:1; min-width:260px;">
+      <div class="about-quote">
+        "I have studied the blockchain for many years. I have concluded: BIG CHUNGUS."
+        <span>— Sun Tzu, The Art of Degen (probably)</span>
+      </div>
+      <p class="about-text">
+        Welcome to the <strong>OFFICIAL WEBSITE</strong> of <strong>$CHUNGUS</strong> — the memecoin inspired by the one, the only, <strong>BIG CHUNGUS HIMSELF!!!!</strong><br><br>
+        Big Chungus is not just a meme. He is a <strong>LIFESTYLE.</strong> He is a <strong>PHILOSOPHY.</strong> He is the reason you wake up in the morning and check your wallet.<br><br>
+        No presale. No team tokens. No VC. Just pure <span class="green">CHUNGUS ENERGY.</span> 100% fair launch.
+      </p>
+    </div>
   </div>
-  <p class="about-text">
-    Welcome to the <strong>OFFICIAL WEBSITE</strong> of <strong>$CHUNGUS</strong> — the memecoin inspired by the one, the only, the <strong>BIG CHUNGUS HIMSELF!!!!</strong><br><br>
-    Big Chungus is not just a meme. He is a <strong>LIFESTYLE.</strong> He is a <strong>PHILOSOPHY.</strong> He is the reason you wake up in the morning and check your wallet.<br><br>
-    While other coins have "utility" and "roadmaps" and "whitepapers", <strong>$CHUNGUS</strong> has something FAR more powerful: THE CHUNGUS.<br><br>
-    No presale. No team tokens. No VC. Just pure <span class="green">CHUNGUS ENERGY.</span> 100% fair launch. This is the way.
-  </p>
 </div>
 
 <!-- MEME GALLERY -->
@@ -835,6 +838,28 @@
   Made with ♥ and BIG CHUNGUS ENERGY
 </div>
 
+<!-- MUSIC -->
+<audio id="bg-music" src="theme.m4a" loop></audio>
+<button id="music-btn" onclick="toggleMusic()" title="Toggle music" style="
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9998;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 3px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  color: var(--yellow);
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+">🔇</button>
+
 <!-- TWERK POPUP -->
 <img id="twerk-chungus" src="chungus-twerk.gif" alt=""
   style="position:fixed; display:none; width:180px; z-index:9999; pointer-events:none;
@@ -933,6 +958,13 @@
       const res  = await fetch('https://api.countapi.xyz/hit/chungus.site/visitors');
       const data = await res.json();
     } catch(e) {}
+  }
+
+  function toggleMusic() {
+    const audio = document.getElementById('bg-music');
+    const btn   = document.getElementById('music-btn');
+    if (audio.paused) { audio.play(); btn.textContent = '🔊'; }
+    else              { audio.pause(); btn.textContent = '🔇'; }
   }
 
   fetchPrice();
