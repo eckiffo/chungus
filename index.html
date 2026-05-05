@@ -975,7 +975,7 @@
 
   // gif popups
   (function() {
-    const gifs = ['superkevin64.gif'];
+    const gifs = ['chungus-twerk.gif'];
     const sizes = [80, 110, 150, 200, 260, 320];
 
     function spawnGif() {
@@ -988,6 +988,7 @@
 
       const el = document.createElement('img');
       el.src = src;
+      const flip = Math.random() > 0.5 ? 'scaleX(-1)' : 'scaleX(1)';
       el.style.cssText = `
         position: fixed;
         left: ${x}px;
@@ -996,6 +997,7 @@
         z-index: 9999;
         pointer-events: none;
         opacity: 0;
+        transform: ${flip};
         transition: opacity 0.35s ease;
       `;
       document.body.appendChild(el);
