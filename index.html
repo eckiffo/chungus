@@ -860,11 +860,7 @@
   justify-content: center;
 ">🔇</button>
 
-<!-- TWERK POPUP -->
-<img id="twerk-chungus" src="chungus-twerk.gif" alt=""
-  style="position:fixed; display:none; width:180px; z-index:9999; pointer-events:none;
-         border:3px solid #CC0000; box-shadow:4px 4px 0 #1A1A1A;
-         transition:opacity 0.4s ease; opacity:0;">
+<!-- GIF POPUPS -->
 
 <script>
   const CA  = 'EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92';
@@ -977,24 +973,49 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // twerk popup
+  // gif popups
   (function() {
-    const gif = document.getElementById('twerk-chungus');
-    function popChungus() {
-      const maxX = window.innerWidth  - 200;
-      const maxY = window.innerHeight - 220;
-      gif.style.left = Math.max(0, Math.floor(Math.random() * maxX)) + 'px';
-      gif.style.top  = Math.max(0, Math.floor(Math.random() * maxY)) + 'px';
-      gif.style.display = 'block';
-      requestAnimationFrame(() => { gif.style.opacity = '1'; });
+    const gifs = ['chungus-twerk.gif', 'superkevin64.gif'];
+    const sizes = [80, 110, 150, 200, 260, 320];
+
+    function spawnGif() {
+      const src  = gifs[Math.floor(Math.random() * gifs.length)];
+      const size = sizes[Math.floor(Math.random() * sizes.length)];
+      const maxX = Math.max(0, window.innerWidth  - size - 10);
+      const maxY = Math.max(0, window.innerHeight - size - 10);
+      const x    = Math.floor(Math.random() * maxX);
+      const y    = Math.floor(Math.random() * maxY);
+
+      const el = document.createElement('img');
+      el.src = src;
+      el.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: ${size}px;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      `;
+      document.body.appendChild(el);
+      requestAnimationFrame(() => { el.style.opacity = '1'; });
+
+      const duration = 2500 + Math.random() * 2000;
       setTimeout(() => {
-        gif.style.opacity = '0';
-        setTimeout(() => { gif.style.display = 'none'; }, 400);
-        scheduleNext();
-      }, 3500);
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 400);
+      }, duration);
     }
-    function scheduleNext() { setTimeout(popChungus, 12000 + Math.random() * 18000); }
-    scheduleNext();
+
+    function wave() {
+      const count = 1 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < count; i++) {
+        setTimeout(spawnGif, i * 300);
+      }
+      setTimeout(wave, 6000 + Math.random() * 10000);
+    }
+    setTimeout(wave, 4000);
   })();
 </script>
 
