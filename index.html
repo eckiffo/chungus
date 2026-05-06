@@ -29,6 +29,8 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { cursor: none; }
+    a, button { cursor: none; }
 
     html { scroll-behavior: smooth; }
 
@@ -1206,6 +1208,20 @@
     }, 300);
   }
   setInterval(nextQuote, 8000);
+
+  // cursor follower
+  (function() {
+    const cur = document.createElement('img');
+    cur.src = 'chungus-twerk.gif';
+    cur.style.cssText = 'position:fixed;width:64px;height:64px;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;display:none;';
+    document.body.appendChild(cur);
+    document.addEventListener('mousemove', e => {
+      cur.style.display = 'block';
+      cur.style.left = e.clientX + 'px';
+      cur.style.top  = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', () => cur.style.display = 'none');
+  })();
 
   // gif popups — original size, mute-linked, non-overlapping, 6-7 max active
   (function() {
