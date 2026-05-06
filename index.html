@@ -1207,51 +1207,66 @@
   }
   setInterval(nextQuote, 8000);
 
-  // gif popups
+  // gif popups — original size, mute-linked, non-overlapping, 6-7 max active
   (function() {
-    const gifs = ['chungus-twerk.gif'];
-    const sizes = [80, 110, 150, 200, 260, 320];
+    const GIF = 'chungus-twerk.gif';
+    const MAX = 7;
+    let gifW = 0, gifH = 0;
+    let active = [];
 
-    function spawnGif() {
-      const src  = gifs[Math.floor(Math.random() * gifs.length)];
-      const size = sizes[Math.floor(Math.random() * sizes.length)];
-      const maxX = Math.max(0, window.innerWidth  - size - 10);
-      const maxY = Math.max(0, window.innerHeight - size - 10);
-      const x    = Math.floor(Math.random() * maxX);
-      const y    = Math.floor(Math.random() * maxY);
+    const probe = new Image();
+    probe.onload = () => {
+      gifW = probe.naturalWidth;
+      gifH = probe.naturalHeight;
+      setTimeout(tick, 4000);
+    };
+    probe.src = GIF;
 
+    function overlaps(x, y) {
+      const pad = 10;
+      for (const r of active) {
+        if (x < r.x + r.w + pad && x + gifW + pad > r.x &&
+            y < r.y + r.h + pad && y + gifH + pad > r.y) return true;
+      }
+      return false;
+    }
+
+    function findSpot() {
+      const maxX = Math.max(0, window.innerWidth  - gifW);
+      const maxY = Math.max(0, window.innerHeight - gifH);
+      for (let i = 0; i < 50; i++) {
+        const x = Math.floor(Math.random() * maxX);
+        const y = Math.floor(Math.random() * maxY);
+        if (!overlaps(x, y)) return {x, y};
+      }
+      return null;
+    }
+
+    function spawn() {
+      if (audio.muted || active.length >= MAX || !gifW) return;
+      const spot = findSpot();
+      if (!spot) return;
       const el = document.createElement('img');
-      el.src = src;
-      const flip = Math.random() > 0.5 ? 'scaleX(-1)' : 'scaleX(1)';
-      el.style.cssText = `
-        position: fixed;
-        left: ${x}px;
-        top: ${y}px;
-        width: ${size}px;
-        z-index: 9999;
-        pointer-events: none;
-        opacity: 0;
-        transform: ${flip};
-        transition: opacity 0.35s ease;
-      `;
+      el.src = GIF;
+      const flip = Math.random() > 0.5 ? 'transform:scaleX(-1);' : '';
+      el.style.cssText = `position:fixed;left:${spot.x}px;top:${spot.y}px;width:${gifW}px;height:${gifH}px;z-index:9999;pointer-events:none;opacity:0;${flip}transition:opacity 0.35s ease;`;
       document.body.appendChild(el);
-      requestAnimationFrame(() => { el.style.opacity = '1'; });
-
-      const duration = 2500 + Math.random() * 2000;
+      requestAnimationFrame(() => el.style.opacity = '1');
+      const rec = {x: spot.x, y: spot.y, w: gifW, h: gifH, el};
+      active.push(rec);
       setTimeout(() => {
         el.style.opacity = '0';
-        setTimeout(() => el.remove(), 400);
-      }, duration);
+        setTimeout(() => { el.remove(); active = active.filter(r => r !== rec); }, 400);
+      }, 3000 + Math.random() * 2000);
     }
 
-    function wave() {
-      const count = 1 + Math.floor(Math.random() * 3);
-      for (let i = 0; i < count; i++) {
-        setTimeout(spawnGif, i * 300);
+    function tick() {
+      if (!audio.muted) {
+        const slots = MAX - active.length;
+        for (let i = 0; i < Math.min(slots, 2); i++) setTimeout(spawn, i * 350);
       }
-      setTimeout(wave, 6000 + Math.random() * 10000);
+      setTimeout(tick, 1800 + Math.random() * 1200);
     }
-    setTimeout(wave, 4000);
   })();
 </script>
 
