@@ -686,8 +686,7 @@
     <a href="#about">About</a>
     <a href="#memes">Memes</a>
     <a href="#chart">Chart</a>
-    <a href="#tokenomics">Tokenomics</a>
-    <a href="#howtobuy">How 2 Buy</a>
+
     <a href="#roadmap">Roadmap</a>
     <a href="#community">Community</a>
     <a href="/game" style="background:#006600; color:#00FF00; border-color:#00FF00;">&#127007; GAME</a>
@@ -709,7 +708,7 @@
     <div class="hero-sub">Ladies &amp; gentlemen... boys &amp; girls... degens of all ages... BEHOLD.</div>
     <div class="hero-btns">
       <a class="btn btn-red" href="https://dexscreener.com/solana/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank">BUY NOW</a>
-      <a class="btn btn-yellow" href="#tokenomics">TOKENOMICS</a>
+
       <a class="btn btn-green" href="/game">&#127007; PLAY GAME</a>
     </div>
   </div>
@@ -844,71 +843,6 @@
   </div>
 </div>
 
-<!-- TOKENOMICS -->
-<hr class="divider">
-<div class="section-wrap reveal" id="tokenomics">
-  <span class="section-title">&#9658; TOKENOMICS</span>
-  <table class="tknomics">
-    <tr><th>Item</th><th>Details</th></tr>
-    <tr><td>Token Name</td><td><strong class="bold-red">BIG CHUNGUS</strong></td></tr>
-    <tr><td>Ticker</td><td><strong class="bold-red">$CHUNGUS</strong></td></tr>
-    <tr><td>Total Supply</td><td>1,000,000,000 (1 Billion)</td></tr>
-    <tr><td>Tax</td><td><span class="green">0% Buy / 0% Sell</span></td></tr>
-    <tr><td>LP</td><td><span class="green">Burned FOREVER 🔥</span></td></tr>
-    <tr><td>Mint Authority</td><td><span class="green">Revoked ✓</span></td></tr>
-    <tr><td>Freeze Authority</td><td><span class="green">Revoked ✓</span></td></tr>
-    <tr><td>Network</td><td>Solana (SOL)</td></tr>
-    <tr><td>Dev Wallet</td><td><span class="green">0% (ur welcome)</span></td></tr>
-    <tr><td>Live Price</td><td><span id="tkn-price" class="mono">loading...</span> &nbsp;<span id="tkn-change"></span></td></tr>
-    <tr><td>Market Cap</td><td><span id="tkn-mcap" class="mono">loading...</span></td></tr>
-  </table>
-  <div class="warning-box">
-    <span class="blink">⚠</span> NOT FINANCIAL ADVICE. BIG CHUNGUS IS NOT RESPONSIBLE FOR YOUR LOSSES. DO YOUR OWN RESEARCH!! (but also buy $CHUNGUS) <span class="blink">⚠</span>
-  </div>
-</div>
-
-<!-- HOW TO BUY -->
-<hr class="divider">
-<div class="section-wrap reveal" id="howtobuy">
-  <span class="section-title">&#9658; HOW 2 BUY</span>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div>
-        <span class="step-title">Get a Solana Wallet</span>
-        <span class="step-desc">Download Phantom or Solflare. Write down your seed phrase!! Do NOT share it with ANYONE — not even Big Chungus himself!!!!</span>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div>
-        <span class="step-title">Buy Some SOL</span>
-        <span class="step-desc">Get SOL from Coinbase, Binance, Kraken etc. Send it to your Phantom wallet. You need SOL to buy $CHUNGUS!!!!</span>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div>
-        <span class="step-title">Go to Raydium or Jupiter</span>
-        <span class="step-desc">Visit jup.ag or raydium.io. Connect your Phantom wallet. Paste the $CHUNGUS contract address!!</span>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div>
-        <span class="step-title">Swap SOL for $CHUNGUS</span>
-        <span class="step-desc">Set slippage to 5-10%. Click SWAP. Confirm in Phantom. Welcome to the CHUNGUS ARMY!!!! 🎉</span>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">5</div>
-      <div>
-        <span class="step-title">Become Chungus</span>
-        <span class="step-desc">Big Chungus provides. Diamond hands. Never sell. You are now Big Chungus.</span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ROADMAP -->
 <hr class="divider">
@@ -1056,15 +990,6 @@
       setEl('live-buys',   pair.txns?.h24?.buys  ?? '--');
       setEl('live-sells',  pair.txns?.h24?.sells ?? '--');
       setEl('last-updated','updated ' + new Date().toLocaleTimeString());
-
-      setEl('tkn-price', fmtPrice(price));
-      const tkn = document.getElementById('tkn-change');
-      if (tkn && ch24 != null) {
-        const n = Number(ch24);
-        tkn.textContent = (n >= 0 ? '▲ +' : '▼ ') + fmt(Math.abs(n), 2) + '%';
-        tkn.style.color = n >= 0 ? '#007700' : '#CC0000';
-      }
-      setEl('tkn-mcap', fmtUsd(mcap));
 
       const chStr = ch24 != null ? (Number(ch24)>=0?' ▲+':' ▼') + fmt(Math.abs(ch24),2)+'%' : '';
       setEl('marquee-price',      fmtPrice(price) + chStr);
