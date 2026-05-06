@@ -45,26 +45,6 @@
     a { color: var(--red); text-decoration: none; }
     a:hover { color: #FF4400; }
 
-    /* ── TICKER ── */
-    .ticker-wrap {
-      background: var(--red);
-      border-bottom: 3px solid var(--black);
-      padding: 6px 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .ticker-content {
-      display: inline-block;
-      animation: ticker 28s linear infinite;
-      font-weight: bold;
-      font-size: 13px;
-      color: var(--yellow);
-      letter-spacing: 1px;
-    }
-    @keyframes ticker {
-      from { transform: translateX(100vw); }
-      to   { transform: translateX(-100%); }
-    }
 
     /* ── NAVBAR ── */
     .navbar {
@@ -194,26 +174,6 @@
       animation: floatup 3s ease-in-out infinite;
     }
 
-    /* ── STATS BAR ── */
-    .stats-bar {
-      background: var(--black);
-      border-bottom: 4px solid var(--red);
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .stat-item {
-      flex: 1;
-      min-width: 130px;
-      text-align: center;
-      padding: 14px 10px;
-      border-right: 1px solid #2A2A2A;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; display: block; }
-    .stat-value { font-family: 'Courier New', monospace; font-size: 17px; font-weight: bold; color: var(--yellow); display: block; margin-top: 3px; }
-    .stat-value.positive { color: #44CC44; }
-    .stat-value.negative { color: #FF4444; }
-    .stats-updated { font-size: 9px; color: #444; text-align: right; padding: 4px 12px; background: var(--black); }
 
     /* ── LAYOUT ── */
     .section-wrap {
@@ -516,12 +476,6 @@
       box-shadow: 6px 6px 0 var(--yellow);
     }
 
-    /* ── STAT FLASH ── */
-    @keyframes stat-flash {
-      0%   { background: rgba(255,215,0,0.25); }
-      100% { background: transparent; }
-    }
-    .stat-flash { animation: stat-flash 0.6s ease-out; }
 
     /* ── COMMUNITY BG ── */
     .community-section {
@@ -668,15 +622,6 @@
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <span class="ticker-content">
-    *** $CHUNGUS IS HERE *** PRICE:&nbsp;<span id="marquee-price">loading...</span>&nbsp;***
-    HE IS BIG. HE IS CHUNGUS. *** THE BIGGEST MEME *** THE BIGGEST COIN ***
-    BIG CHUNGUS IS WATCHING *** JOIN THE CHUNGUS ARMY *** TO THE MOON ***
-    $CHUNGUS $CHUNGUS $CHUNGUS *** WAGMI *** CHUNGUS NEVER RUGS ***
-  </span>
-</div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -719,34 +664,6 @@
   </div>
 </div>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-label">Price</span>
-    <span class="stat-value" id="live-price">--</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-label">24h Change</span>
-    <span class="stat-value" id="live-change">--</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-label">Market Cap</span>
-    <span class="stat-value" id="live-mcap">--</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-label">Volume 24h</span>
-    <span class="stat-value" id="live-vol">--</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-label">Liquidity</span>
-    <span class="stat-value" id="live-liq">--</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-label">Buys / Sells</span>
-    <span class="stat-value"><span id="live-buys" style="color:#44CC44;">--</span> / <span id="live-sells" style="color:#FF4444;">--</span></span>
-  </div>
-</div>
-<div class="stats-updated" id="last-updated">refreshes every 30s</div>
 
 <!-- ABOUT -->
 <hr class="divider">
@@ -1081,13 +998,6 @@
     return '$' + p.toFixed(6);
   }
   function setEl(id, val) { const e = document.getElementById(id); if (e) e.textContent = val; }
-  function setChange(id, pct) {
-    const e = document.getElementById(id);
-    if (!e || pct == null) return;
-    const n = Number(pct);
-    e.textContent = (n >= 0 ? '▲ +' : '▼ ') + fmt(Math.abs(n), 2) + '%';
-    e.className = 'stat-value ' + (n >= 0 ? 'positive' : 'negative');
-  }
 
   async function fetchPrice() {
     try {
@@ -1099,21 +1009,10 @@
 
       const price = pair.priceUsd;
       const ch24  = pair.priceChange?.h24;
-      const mcap  = pair.fdv || pair.marketCap;
 
-      setEl('live-price',  fmtPrice(price));
-      setEl('nav-price',   fmtPrice(price));
-      document.querySelectorAll('.stat-item').forEach(el => { el.classList.remove('stat-flash'); void el.offsetWidth; el.classList.add('stat-flash'); });
-      setChange('live-change', ch24);
-      setEl('live-mcap',   fmtUsd(mcap));
-      setEl('live-vol',    fmtUsd(pair.volume?.h24));
-      setEl('live-liq',    fmtUsd(pair.liquidity?.usd));
-      setEl('live-buys',   pair.txns?.h24?.buys  ?? '--');
-      setEl('live-sells',  pair.txns?.h24?.sells ?? '--');
-      setEl('last-updated','updated ' + new Date().toLocaleTimeString());
+      setEl('nav-price', fmtPrice(price));
 
       const chStr = ch24 != null ? (Number(ch24)>=0?' ▲+':' ▼') + fmt(Math.abs(ch24),2)+'%' : '';
-      setEl('marquee-price',      fmtPrice(price) + chStr);
       setEl('chart-price-header', fmtPrice(price) + chStr);
 
       if (!chartLoaded && pair.pairAddress) {
