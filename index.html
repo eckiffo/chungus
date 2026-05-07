@@ -35,9 +35,14 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--cream);
-      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23000' fill-opacity='0.04'/%3E%3C/svg%3E");
-      color: var(--black);
+      background: linear-gradient(to bottom,
+        #3a0000 0%,
+        #1e0000 20%,
+        #0d0000 45%,
+        #050000 70%,
+        #000000 100%
+      );
+      color: var(--cream);
       font-family: 'Comic Neue', 'Comic Sans MS', cursive;
       overflow-x: hidden;
     }
@@ -84,8 +89,8 @@
           #FF4400  0%,
           #CC1100 20%,
           #880000 45%,
-          #440000 70%,
-          #150000 100%);
+          #350000 72%,
+          #1e0000 100%);
       border-bottom: 5px solid var(--black);
       padding: 80px 8%;
       display: flex;
@@ -196,9 +201,9 @@
       margin-bottom: 24px;
     }
     .about-quote span { display: block; font-size: 12px; color: #888; margin-top: 8px; font-style: normal; font-family: 'Comic Neue', cursive; }
-    .about-text { font-size: 14px; line-height: 1.8; color: #333; }
+    .about-text { font-size: 14px; line-height: 1.8; color: #c8a882; }
     .about-text strong { color: var(--red); }
-    .about-text .green { color: #007700; }
+    .about-text .green { color: #44cc66; }
 
     /* ── MEME GALLERY ── */
     .meme-grid {
@@ -273,7 +278,7 @@
       font-family: 'Courier New', monospace;
       font-size: 16px;
       font-weight: bold;
-      background: var(--cream);
+      background: #050000;
     }
     .chart-iframe { width: 100%; height: 420px; border: none; display: block; background: #000; }
 
@@ -332,7 +337,7 @@
       flex-shrink: 0;
     }
     .step-title { font-family: Impact, 'Arial Black', sans-serif; font-size: 18px; color: var(--red); text-transform: uppercase; display: block; margin-bottom: 4px; }
-    .step-desc { font-size: 13px; color: #333; line-height: 1.6; }
+    .step-desc { font-size: 13px; color: #c8a882; line-height: 1.6; }
 
     /* ── ROADMAP ── */
     .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -352,9 +357,7 @@
 
     /* ── COMMUNITY ── */
     .community-section {
-      background: #150000;
-      border-top: 5px solid var(--black);
-      border-bottom: 5px solid var(--black);
+      background: transparent;
       text-align: center;
       padding: 70px 40px;
       position: relative;
@@ -418,11 +421,11 @@
 
     /* ── FOOTER ── */
     .footer {
-      background: #0D0000;
-      border-top: 3px solid #330000;
+      background: transparent;
+      border-top: 1px solid rgba(255,80,0,0.12);
       padding: 24px 40px;
       text-align: center;
-      color: #444;
+      color: #555;
       font-size: 12px;
     }
     .footer a { color: #666; }
@@ -449,9 +452,7 @@
 
     /* ── MEME SECTION ALT BG ── */
     .section-dark {
-      background: #1A0A00;
-      border-top: 4px solid var(--black);
-      border-bottom: 4px solid var(--black);
+      background: transparent;
     }
     .section-dark .section-title {
       color: var(--yellow);
@@ -470,9 +471,8 @@
     .community-section {
       background:
         radial-gradient(ellipse 50% 80% at 90% 50%,
-          rgba(255,80,0,0.3) 0%,
-          transparent 70%),
-        #150000;
+          rgba(255,80,0,0.18) 0%,
+          transparent 70%);
     }
 
     /* ── FILM GRAIN ── */
@@ -516,9 +516,7 @@
 
     /* ── CHUNGUS SAYS ── */
     .chungus-says {
-      background: #0A0000;
-      border-top: 4px solid var(--black);
-      border-bottom: 4px solid var(--black);
+      background: transparent;
       text-align: center;
       padding: 60px 40px;
     }
@@ -654,7 +652,6 @@
 
 
 <!-- ABOUT -->
-<hr class="divider">
 <div class="section-wrap reveal" id="about">
   <span class="section-title">&#9658; ABOUT $CHUNGUS</span>
   <div style="display:flex; gap:40px; align-items:center; flex-wrap:wrap;">
@@ -792,7 +789,6 @@
 </div>
 
 <!-- CHART -->
-<hr class="divider">
 <div class="section-wrap reveal" id="chart">
   <span class="section-title">&#9658; LIVE CHART</span>
   <div class="chart-wrap">
