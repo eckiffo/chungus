@@ -609,6 +609,67 @@
       .hero-title { font-size: 48px; }
       .hero-btns { flex-direction: column; }
     }
+
+    /* ── CHUNGUSUMO ── */
+    .sumo-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      touch-action: none;
+      background: #000;
+    }
+    @media (max-width: 768px) {
+      .sumo-wrap { aspect-ratio: unset; min-height: 100svh; }
+    }
+    #sumo-iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+    .sumo-cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      cursor: pointer;
+      background: radial-gradient(ellipse at 50% 40%, #1a0000 0%, #000 100%);
+      transition: opacity 0.3s;
+    }
+    .sumo-cover:hover { opacity: 0.88; }
+    .sumo-cover img { width: 140px; filter: drop-shadow(0 0 24px rgba(255,80,0,0.7)); animation: floatup 3s ease-in-out infinite; }
+    .sumo-play-btn {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 38px;
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--black);
+      text-shadow: 5px 5px 0 var(--red);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+    .sumo-cover-sub {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 13px;
+      color: #888;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .sumo-newtab {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #555;
+      font-family: 'Comic Neue', cursive;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.15s;
+    }
+    .sumo-newtab:hover { color: var(--yellow); }
   </style>
 </head>
 <body>
@@ -625,6 +686,7 @@
     <a href="#memes">Memes</a>
     <a href="#chart">Chart</a>
 
+    <a href="#chungusumo">&#9876; Sumo</a>
     <a href="#community">Community</a>
     <a href="/game" style="background:#006600; color:#00FF00; border-color:#00FF00;">&#127007; GAME</a>
   </div>
@@ -807,6 +869,29 @@
 
 
 
+<!-- CHUNGUSUMO -->
+<div class="section-wrap reveal" id="chungusumo">
+  <span class="section-title">&#9876; CHUNGUSUMO</span>
+  <p style="font-size:14px;color:#c8a882;margin-bottom:20px;line-height:1.7;">
+    Multiplayer sumo battle. Push other Chunguses off the platform. Last one standing wins.<br>
+    <strong style="color:var(--red);">Click to load</strong> — the game connects live multiplayer on start.
+  </p>
+  <div class="sumo-wrap" id="sumo-wrap">
+    <div class="sumo-cover" id="sumo-cover" onclick="loadSumo()">
+      <img src="BigChungus0.webp" alt="Big Chungus">
+      <div class="sumo-play-btn">&#9654;&#65039; PLAY</div>
+      <div class="sumo-cover-sub">Chungusumo &mdash; Multiplayer</div>
+    </div>
+    <iframe id="sumo-iframe"
+      data-src="https://chungusumo.vercel.app"
+      allow="fullscreen; autoplay; gamepad; pointer-lock; clipboard-write"
+      loading="lazy"
+      title="ChunguSumo Multiplayer"
+    ></iframe>
+  </div>
+  <a class="sumo-newtab" href="https://chungusumo.vercel.app" target="_blank" rel="noopener">open in new tab &#8599;</a>
+</div>
+
 <!-- COMMUNITY -->
 <div class="community-section" id="community">
   <img class="community-disc" src="bigC.png" alt="">
@@ -955,6 +1040,14 @@
     };
     document.addEventListener('click', unlock);
   });
+
+  function loadSumo() {
+    const iframe = document.getElementById('sumo-iframe');
+    const cover  = document.getElementById('sumo-cover');
+    iframe.src = iframe.dataset.src;
+    iframe.style.display = 'block';
+    cover.style.display  = 'none';
+  }
 
   fetchPrice();
   setInterval(fetchPrice, 30000);
