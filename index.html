@@ -686,7 +686,7 @@
     <a href="#memes">Memes</a>
     <a href="#chart">Chart</a>
 
-    <a href="#chungusumo">&#9876; Sumo</a>
+    <a href="/sumo">&#9876; Sumo</a>
     <a href="#community">Community</a>
     <a href="/game" style="background:#006600; color:#00FF00; border-color:#00FF00;">&#127007; GAME</a>
   </div>
@@ -872,24 +872,13 @@
 <!-- CHUNGUSUMO -->
 <div class="section-wrap reveal" id="chungusumo">
   <span class="section-title">&#9876; CHUNGUSUMO</span>
-  <p style="font-size:14px;color:#c8a882;margin-bottom:20px;line-height:1.7;">
-    Multiplayer sumo battle. Push other Chunguses off the platform. Last one standing wins.<br>
-    <strong style="color:var(--red);">Click to load</strong> — the game connects live multiplayer on start.
+  <p style="font-size:14px;color:#c8a882;margin-bottom:28px;line-height:1.7;">
+    Multiplayer sumo battle. Push other Chunguses off the platform. Last one standing wins.
   </p>
-  <div class="sumo-wrap" id="sumo-wrap">
-    <div class="sumo-cover" id="sumo-cover" onclick="loadSumo()">
-      <img src="BigChungus0.webp" alt="Big Chungus">
-      <div class="sumo-play-btn">&#9654;&#65039; PLAY</div>
-      <div class="sumo-cover-sub">Chungusumo &mdash; Multiplayer</div>
-    </div>
-    <iframe id="sumo-iframe"
-      data-src="https://chungusumo.vercel.app"
-      allow="fullscreen; autoplay; gamepad; pointer-lock; clipboard-write"
-      loading="lazy"
-      title="ChunguSumo Multiplayer"
-    ></iframe>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;">
+    <a class="btn btn-red" href="/sumo">&#9876; PLAY CHUNGUSUMO</a>
+    <a class="btn btn-yellow" href="https://chungusumo.vercel.app" target="_blank" rel="noopener">Open Full Screen &#8599;</a>
   </div>
-  <a class="sumo-newtab" href="https://chungusumo.vercel.app" target="_blank" rel="noopener">open in new tab &#8599;</a>
 </div>
 
 <!-- COMMUNITY -->
@@ -1040,14 +1029,6 @@
     };
     document.addEventListener('click', unlock);
   });
-
-  function loadSumo() {
-    const iframe = document.getElementById('sumo-iframe');
-    const cover  = document.getElementById('sumo-cover');
-    iframe.src = iframe.dataset.src;
-    iframe.style.display = 'block';
-    cover.style.display  = 'none';
-  }
 
   fetchPrice();
   setInterval(fetchPrice, 30000);
