@@ -720,6 +720,36 @@
       transition: color 0.15s;
     }
     .sumo-newtab:hover { color: var(--yellow); }
+
+    /* ── GAMES PICKER ── */
+    .games-picker-wrap { position: relative; display: inline-block; }
+    .games-drop {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: var(--black);
+      border: 3px solid var(--yellow);
+      box-shadow: 5px 5px 0 var(--red);
+      z-index: 500;
+      min-width: 210px;
+      flex-direction: column;
+    }
+    .games-drop.open { display: flex; }
+    .games-drop a {
+      padding: 13px 18px;
+      color: var(--yellow) !important;
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none !important;
+      border-bottom: 1px solid #333 !important;
+      background: none;
+      box-shadow: none !important;
+    }
+    .games-drop a:last-child { border-bottom: none !important; }
+    .games-drop a:hover { background: var(--red) !important; color: var(--yellow) !important; }
   </style>
 </head>
 <body>
@@ -736,10 +766,15 @@
     <a href="#memes">Memes</a>
     <a href="#chart">Chart</a>
 
-    <a href="/sumo">&#9876; Sumo</a>
     <a href="/pfp">&#127912; PFP</a>
     <a href="#community">Community</a>
-    <a href="/game" style="background:#006600; color:#00FF00; border-color:#00FF00;">&#127007; GAME</a>
+    <div class="games-picker-wrap">
+      <a style="background:#006600;color:#00FF00;border-color:#00FF00;border:2px solid #00FF00;padding:5px 10px;font-weight:bold;font-size:12px;" onclick="toggleGames(event)" href="#">&#127007; GAMES &#9660;</a>
+      <div class="games-drop" id="games-drop">
+        <a href="/game">&#127007; Chungus Jumper</a>
+        <a href="/sumo">&#9876; ChunguSumo</a>
+      </div>
+    </div>
   </div>
   <div class="nav-price"><span class="live-dot"></span> <span id="nav-price">loading...</span></div>
   <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
@@ -750,10 +785,10 @@
   <a href="#about">About</a>
   <a href="#memes">Memes</a>
   <a href="#chart">Chart</a>
-  <a href="/sumo">&#9876; Sumo</a>
   <a href="/pfp">&#127912; PFP</a>
   <a href="#community">Community</a>
-  <a href="/game" style="background:#006600;color:#00FF00;border-color:#00FF00;">&#127007; GAME</a>
+  <a href="/game" style="background:#006600;color:#00FF00;border-color:#00FF00;">&#127007; Chungus Jumper</a>
+  <a href="/sumo" style="background:#006600;color:#00FF00;border-color:#00FF00;">&#9876; ChunguSumo</a>
 </nav>
 
 <!-- HERO -->
@@ -771,7 +806,13 @@
     <div class="hero-btns">
       <a class="btn btn-red" href="https://dexscreener.com/solana/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank">BUY NOW</a>
 
-      <a class="btn btn-green" href="/game">&#127007; PLAY GAME</a>
+      <div class="games-picker-wrap">
+        <button class="btn btn-green" onclick="toggleGames(event)">&#127007; GAMES &#9660;</button>
+        <div class="games-drop" id="games-drop-hero">
+          <a href="/game">&#127007; Chungus Jumper</a>
+          <a href="/sumo">&#9876; ChunguSumo</a>
+        </div>
+      </div>
     </div>
   </div>
   <div class="hero-img">
@@ -942,10 +983,7 @@
   <p style="font-size:14px;color:#c8a882;margin-bottom:28px;line-height:1.7;">
     Build your Chungus profile picture. Dress him up. Make him yours. Post it everywhere.
   </p>
-  <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    <a class="btn btn-red" href="/pfp">&#127912; MAKE MY PFP</a>
-    <a class="btn btn-yellow" href="https://chungus-maker.vercel.app/" target="_blank" rel="noopener">Open Full Screen &#8599;</a>
-  </div>
+  <a class="btn btn-red" href="/pfp">&#127912; MAKE MY PFP</a>
 </div>
 
 <!-- CHUNGUSUMO -->
@@ -954,10 +992,7 @@
   <p style="font-size:14px;color:#c8a882;margin-bottom:28px;line-height:1.7;">
     Multiplayer sumo battle. Push other Chunguses off the platform. Last one standing wins.
   </p>
-  <div style="display:flex;gap:14px;flex-wrap:wrap;">
-    <a class="btn btn-red" href="/sumo">&#9876; PLAY CHUNGUSUMO</a>
-    <a class="btn btn-yellow" href="https://chungusumo.vercel.app" target="_blank" rel="noopener">Open Full Screen &#8599;</a>
-  </div>
+  <a class="btn btn-red" href="/sumo">&#9876; PLAY CHUNGUSUMO</a>
 </div>
 
 <!-- COMMUNITY -->
@@ -1109,6 +1144,19 @@
       document.removeEventListener('click', unlock);
     };
     document.addEventListener('click', unlock);
+  });
+
+  function toggleGames(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    // find the sibling .games-drop inside the same wrapper
+    const drop = e.currentTarget.closest('.games-picker-wrap').querySelector('.games-drop');
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.games-drop').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  }
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.games-drop').forEach(d => d.classList.remove('open'));
   });
 
   function toggleNav() {
