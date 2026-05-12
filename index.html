@@ -975,7 +975,7 @@
   <span class="section-title">&#9658; LIVE CHART</span>
   <div class="chart-wrap">
     <div class="chart-hdr">
-      <span><span class="live-dot"></span>$CHUNGUS / SOL — DEXSCREENER</span>
+      <span><span class="live-dot"></span>$CHUNGUS / SOL — LIVE</span>
       <span style="font-size:14px;" id="chart-price-header">loading...</span>
     </div>
     <div class="chart-loading" id="chart-loading">LOADING CHUNGUS CHART...</div>
@@ -1113,7 +1113,7 @@
       if (!chartLoaded && pair.pairAddress) {
         chartLoaded = true;
         const iframe = document.getElementById('dex-chart');
-        iframe.src = 'https://dexscreener.com/solana/' + pair.pairAddress + '?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartDefaultOnMobile=1&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15';
+        iframe.src = 'https://www.geckoterminal.com/solana/pools/' + pair.pairAddress + '?embed=1&info=0&swaps=0&grayscale=0&light_chart=0';
         iframe.style.display = 'block';
         document.getElementById('chart-loading').style.display = 'none';
       }
