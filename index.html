@@ -403,8 +403,19 @@
     }
     .social-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--red); color: var(--black); }
     .social-btn svg { width: 30px; height: 30px; fill: currentColor; display: block; }
-    .social-btn.btn-game { background: #006600; color: #00FF00; border-color: #006600; box-shadow: 4px 4px 0 #00FF00; font-size: 30px; line-height: 1; }
+    .social-btn.btn-game { background: #006600; color: #00FF00; border-color: #006600; box-shadow: 4px 4px 0 #00FF00; font-size: 30px; line-height: 1; cursor: pointer; }
     .social-btn.btn-game:hover { box-shadow: 6px 6px 0 #00FF00; color: #00FF00; }
+    .games-drop-up {
+      top: auto !important;
+      bottom: calc(100% + 10px);
+      left: 50% !important;
+      transform: translateX(-50%);
+      border-color: #00FF00 !important;
+      box-shadow: 5px 5px 0 #006600 !important;
+      min-width: 170px !important;
+    }
+    .games-drop-up a { color: #00FF00 !important; }
+    .games-drop-up a:hover { background: #006600 !important; color: #00FF00 !important; }
     .ca-wrap { position: relative; z-index: 1; display: inline-block; background: #111; border: 3px solid var(--red); box-shadow: 5px 5px 0 var(--yellow); padding: 20px 28px; }
     .ca-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 8px; }
     .ca-addr { font-family: 'Courier New', monospace; color: var(--yellow); font-size: 13px; word-break: break-all; display: block; margin-bottom: 12px; }
@@ -1031,9 +1042,20 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18v-2H5V3H3zm15 4-4 4-3-3-4 4 1.4 1.4L11 10.8l3 3 5.4-5.4L18 7z"/></svg>
     </a>
     <a class="social-btn" href="https://pump.fun/coin/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank" aria-label="Pump.fun" title="Pump.fun">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 9v13h5v-7h6v7h5V9z"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <g transform="rotate(-35 12 12)">
+          <rect x="2" y="9" width="20" height="6" rx="3" fill="currentColor"/>
+          <rect x="11" y="9" width="2" height="6" fill="#FFD700"/>
+        </g>
+      </svg>
     </a>
-    <a class="social-btn btn-game" href="/game" aria-label="Play Game" title="Play Game">&#127918;</a>
+    <div class="games-picker-wrap">
+      <button type="button" class="social-btn btn-game" onclick="toggleGames(event)" aria-label="Play Game" aria-haspopup="true" title="Play Game">&#127918;</button>
+      <div class="games-drop games-drop-up" role="menu">
+        <a href="/game" role="menuitem">&#127007; Jumper</a>
+        <a href="/sumo" role="menuitem">&#9876; Sumo</a>
+      </div>
+    </div>
   </div>
   <div class="ca-wrap">
     <span class="ca-label">Contract Address</span>
