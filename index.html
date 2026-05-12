@@ -391,20 +391,20 @@
       position: relative; z-index: 1;
     }
     .community-sub { color: #aaa; font-size: 14px; margin-bottom: 36px; position: relative; z-index: 1; }
-    .social-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; position: relative; z-index: 1; }
+    .social-links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; position: relative; z-index: 1; }
     .social-btn {
-      padding: 12px 24px;
+      width: 64px; height: 64px;
+      display: inline-flex; align-items: center; justify-content: center;
       background: var(--yellow);
       color: var(--black);
-      font-family: Impact, 'Arial Black', sans-serif;
-      font-size: 16px;
       border: 3px solid var(--black);
       box-shadow: 4px 4px 0 var(--red);
-      text-transform: uppercase;
-      letter-spacing: 2px;
       transition: transform 0.1s, box-shadow 0.1s;
     }
     .social-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--red); color: var(--black); }
+    .social-btn svg { width: 30px; height: 30px; fill: currentColor; display: block; }
+    .social-btn.btn-game { background: #006600; color: #00FF00; border-color: #006600; box-shadow: 4px 4px 0 #00FF00; font-size: 30px; line-height: 1; }
+    .social-btn.btn-game:hover { box-shadow: 6px 6px 0 #00FF00; color: #00FF00; }
     .ca-wrap { position: relative; z-index: 1; display: inline-block; background: #111; border: 3px solid var(--red); box-shadow: 5px 5px 0 var(--yellow); padding: 20px 28px; }
     .ca-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 8px; }
     .ca-addr { font-family: 'Courier New', monospace; color: var(--yellow); font-size: 13px; word-break: break-all; display: block; margin-bottom: 12px; }
@@ -1018,12 +1018,22 @@
   <div class="community-title">JOIN THE CHUNGUS ARMY</div>
   <p class="community-sub">We are thousands strong and growing every day. Big Chungus unites us all.</p>
   <div class="social-links">
-    <a class="social-btn" href="https://x.com/OGBigChungusPF" target="_blank">Twitter / X</a>
-    <a class="social-btn" href="https://t.me/big_chungus_sol" target="_blank">Telegram</a>
-    <a class="social-btn" href="https://www.tiktok.com/@bigchunguspump" target="_blank">TikTok</a>
-    <a class="social-btn" href="https://dexscreener.com/solana/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank">DexScreener</a>
-    <a class="social-btn" href="https://pump.fun/coin/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank">Pump.fun</a>
-    <a class="social-btn" href="/game" style="background:#006600; color:#00FF00; border-color:#006600; box-shadow:4px 4px 0 #00FF00;">&#127007; Play Game</a>
+    <a class="social-btn" href="https://x.com/OGBigChungusPF" target="_blank" aria-label="Twitter / X" title="Twitter / X">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a class="social-btn" href="https://t.me/big_chungus_sol" target="_blank" aria-label="Telegram" title="Telegram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.464.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+    <a class="social-btn" href="https://www.tiktok.com/@bigchunguspump" target="_blank" aria-label="TikTok" title="TikTok">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+    </a>
+    <a class="social-btn" href="https://dexscreener.com/solana/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank" aria-label="DexScreener" title="DexScreener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18v-2H5V3H3zm15 4-4 4-3-3-4 4 1.4 1.4L11 10.8l3 3 5.4-5.4L18 7z"/></svg>
+    </a>
+    <a class="social-btn" href="https://pump.fun/coin/EMuNS94pVJUKVk1uHCp52K4wPyP8wsF7bDnGP6e1iQ92" target="_blank" aria-label="Pump.fun" title="Pump.fun">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 9v13h5v-7h6v7h5V9z"/></svg>
+    </a>
+    <a class="social-btn btn-game" href="/game" aria-label="Play Game" title="Play Game">&#127918;</a>
   </div>
   <div class="ca-wrap">
     <span class="ca-label">Contract Address</span>
